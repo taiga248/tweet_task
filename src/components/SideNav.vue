@@ -1,0 +1,56 @@
+<template>
+  <v-navigation-drawer
+    app
+    class="white--text"
+    v-model="$store.state.drawer"
+    temporary
+  >
+    <v-list>
+      <v-list-item>
+        <v-list-item-avatar>
+          <!-- <img v-if="photoURL" :src="photoURL" /> -->
+        </v-list-item-avatar>
+        <v-list-item-content>
+          <v-list-item-title>userName</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list-item v-for="(item, index) in items" :key="index" :to="item.link">
+        <v-list-item-icon>
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+    </v-list>
+  </v-navigation-drawer>
+</template>
+
+<script>
+// import { mapGetters } from "vuex";
+export default {
+  name: "SideNav",
+  data() {
+    return {
+      items: [
+        {
+          title: "アカウント",
+          icon: "mdi-account-circle-outline",
+          link: { name: "Account" }
+        },
+        {
+          title: "記録",
+          icon: "mdi-bulletin-board",
+          link: { name: "Recode" }
+        }
+      ]
+    };
+  },
+  computed: {
+    // ...mapGetters(["userName", "photoURL"])
+  }
+};
+</script>
