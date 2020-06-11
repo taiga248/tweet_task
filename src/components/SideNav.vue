@@ -1,10 +1,5 @@
 <template>
-  <v-navigation-drawer
-    app
-    class="white--text"
-    v-model="$store.state.drawer"
-    temporary
-  >
+  <v-navigation-drawer app class="white--text" v-model="$store.state.drawer" temporary>
     <v-list>
       <v-list-item>
         <v-list-item-avatar>

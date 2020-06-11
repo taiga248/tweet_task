@@ -3,7 +3,7 @@
     <v-layout wrap row>
       <v-flex xs12 sm5>
         <v-card class="card ma-4 text-center" height="600">
-          <v-responsive class="pt-6">
+          <v-responsive class="pt-7">
             <v-avatar size="150">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
@@ -39,10 +39,12 @@
                 <v-icon left>mdi-timer</v-icon>
                 <span>総勉強時間</span>
               </p>
-              <p class="grey--text">
-                <v-icon left>mdi-tag</v-icon>
-                <span>タグ</span>
-              </p>
+            </div>
+            <div class="mx-auto">
+              <v-chip class="mx-1" :color="tag.color" label v-for="(tag, i) in tags" :key="i">
+                <v-icon left>mdi-label</v-icon>
+                <span>{{ tag.text }}</span>
+              </v-chip>
             </div>
           </v-card-text>
         </v-card>
@@ -64,6 +66,20 @@ export default {
   },
   data() {
     return {
+      tags: [
+        {
+          text: "仕事",
+          color: "primary"
+        },
+        {
+          text: "勉強",
+          color: "success"
+        },
+        {
+          text: "課題",
+          color: "info"
+        }
+      ],
       photoURL:
         "https://images.pexels.com/photos/3704460/pexels-photo-3704460.jpeg?cs=srgb&dl=pexels-3704460.jpg&fm=jpg"
     };
