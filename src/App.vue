@@ -5,7 +5,7 @@
       <v-toolbar-title>Knowder</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text v-if="!$store.state.login_user">
+        <v-btn text v-if="$store.state.login_user">
           <v-icon>mdi-exit-to-app</v-icon>
           <span @click="logout">Logout</span>
         </v-btn>
@@ -36,7 +36,8 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user);
-        this.fetchWork()
+        this.fetchWork();
+        // this.fetchTime();
         if (this.$router.currentRoute.name === "Home") {
           this.$router.push({ name: "Account" }, () => {});
         }
@@ -54,6 +55,7 @@ export default {
       "setLoginUser",
       "deleteLoginUser",
       "fetchWork"
+      // "fetchTime"
     ])
   }
 };

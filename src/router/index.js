@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Account from "../views/Account.vue";
 import Recode from "../views/Recode.vue";
+import NotFound from "../views/NotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/Recode",
     name: "Recode",
     component: Recode
+  },
+  {
+    path: "/*",
+    name: "NotFound",
+    component: NotFound
   }
 ];
 

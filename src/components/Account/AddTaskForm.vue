@@ -42,12 +42,7 @@ export default {
         text: this.text,
         createAt: this.now
       };
-
-      /* Debug */
-      console.log("components : ");
-      console.log(work_data);
-      /*  */
-
+      // this.totalTime(this.working_time);
       this.addWork(work_data);
       this.$router.push({ name: "Recode" });
     },
@@ -56,7 +51,7 @@ export default {
       this.time = "";
       this.text = "";
     },
-    ...mapActions(["addWork"])
+    ...mapActions(["addWork", "totalTime"])
   }
 };
 </script>

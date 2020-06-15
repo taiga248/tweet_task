@@ -9,6 +9,7 @@ export default new Vuex.Store({
     login_user: null,
     drawer: false,
     works: []
+    // totalTime: {}
   },
   mutations: {
     setLoginUser(state, user) {
@@ -21,13 +22,16 @@ export default new Vuex.Store({
       state.drawer = !state.drawer;
     },
     addWork(state, { id, work }) {
-      /* Debug */
-      console.log("mutation : ");
-      console.log(work);
-      /*  */
       work.id = id;
       state.works.push(work);
     }
+    // totalTime(state, time) {
+    //   console.log("State :");
+    //   console.log(time);
+    //   state.totalTime.push(time);
+    //   console.log("State :");
+    //   console.log(state.totalTime);
+    // }
   },
   actions: {
     login() {
@@ -58,16 +62,40 @@ export default new Vuex.Store({
       }
     },
     fetchWork({ getters, commit }) {
-      firebase
-        .firestore()
-        .collection(`works/${getters.uid}/work`)
-        .get()
-        .then(snapshot => {
-          snapshot.forEach(doc =>
-            commit("addWork", { id: doc.id, work: doc.data() })
-          );
-        });
+      if (getters.uid) {
+        firebase
+          .firestore()
+          .collection(`works/${getters.uid}/work`)
+          .get()
+          .then(snapshot => {
+            snapshot.forEach(doc =>
+              commit("addWork", { id: doc.id, work: doc.data() })
+            );
+          });
+      }
     }
+    // totalTime({ getters, commit }, time) {
+    //   if (getters.uid) {
+    //     firebase
+    //       .firestore()
+    //       .collection(`works/${getters.uid}/totalTime`)
+    //       .add(time)
+    //       .then(doc => {
+    //         commit("totalTime", { id: doc.id, time });
+    //       });
+    //   }
+    // },
+    // fetchTime({ getters, commit }) {
+    //   if (getters.uid) {
+    //     firebase
+    //       .firestore()
+    //       .collection(`works/${getters.uid}/totalTime`)
+    //       .get()
+    //       .then(snapshot => {
+    //         snapshot.forEach(doc => commit("totalTime", doc.data()));
+    //       });
+    //   }
+    // }
   },
   getters: {
     userName: state => (state.login_user ? state.login_user.displayName : ""),

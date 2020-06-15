@@ -2,28 +2,30 @@
   <v-container>
     <v-layout wrap row>
       <v-flex xs12 sm5>
-        <v-card class="card ma-4 text-center" height="600">
+        <v-card class="card ma-4 text-center">
           <v-responsive class="pt-7">
             <v-avatar size="150">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
           </v-responsive>
           <v-card-text>
-            <p class="title">{{userName}}</p>
-            <div class="text-left ml-6">
-              <p class="grey--text">
+            <p class="title">{{ userName }}</p>
+            <v-list class="text-left">
+              <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
                 <span>目標</span>
-              </p>
-              <p class="grey--text">
+                <br />(目標)
+              </v-list-item>
+              <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
                 <span>いつまで</span>
-              </p>
-              <p class="grey--text">
+                <br />(期限)
+              </v-list-item>
+              <!-- <v-list-item class="grey--text">
                 <v-icon left>mdi-tag</v-icon>
                 <span>進行中のもの</span>
-              </p>
-            </div>
+              </v-list-item>-->
+            </v-list>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -41,7 +43,7 @@
               </p>
             </div>
             <div class="mx-auto">
-              <v-chip class="mx-1" :color="tag.color" label v-for="(tag, i) in tags" :key="i">
+              <v-chip class="mx-1" dark :color="tag.color" label v-for="(tag, i) in tags" :key="i">
                 <v-icon left>mdi-label</v-icon>
                 <span>{{ tag.text }}</span>
               </v-chip>
@@ -77,9 +79,9 @@ export default {
         },
         {
           text: "課題",
-          color: "info"
+          color: "rgb(255, 69, 58)"
         }
-      ],
+      ]
     };
   },
   computed: {
