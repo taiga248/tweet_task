@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     login_user: null,
-    drawer: false
+    drawer: false,
+    works: []
   },
   mutations: {
     setLoginUser(state, user) {
@@ -18,6 +19,14 @@ export default new Vuex.Store({
     },
     toggleSideMenu(state) {
       state.drawer = !state.drawer;
+    },
+    addWork(state, { id, work }) {
+      /* Debug */
+      console.log("mutation : ");
+      console.log(work);
+      /*  */
+      work.id = id;
+      state.works.push(work);
     }
   },
   actions: {
@@ -36,10 +45,33 @@ export default new Vuex.Store({
     },
     toggleSideMenu({ commit }) {
       commit("toggleSideMenu");
+    },
+    addWork({ getters, commit }, work) {
+      if (getters.uid) {
+        firebase
+          .firestore()
+          .collection(`works/${getters.uid}/work`)
+          .add(work)
+          .then(doc => {
+            commit("addWork", { id: doc.id, work });
+          });
+      }
+    },
+    fetchWork({ getters, commit }) {
+      firebase
+        .firestore()
+        .collection(`works/${getters.uid}/work`)
+        .get()
+        .then(snapshot => {
+          snapshot.forEach(doc =>
+            commit("addWork", { id: doc.id, work: doc.data() })
+          );
+        });
     }
   },
   getters: {
     userName: state => (state.login_user ? state.login_user.displayName : ""),
-    photoURL: state => (state.login_user ? state.login_user.photoURL : "")
+    photoURL: state => (state.login_user ? state.login_user.photoURL : ""),
+    uid: state => (state.login_user ? state.login_user.uid : null)
   }
 });
