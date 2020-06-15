@@ -1,5 +1,5 @@
 <template>
-  <h3 class="text-center">Analytics</h3>
+  <h3 class="text-center mb-5">Analytics</h3>
 </template>
 
 <script>
