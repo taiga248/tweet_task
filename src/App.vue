@@ -4,9 +4,9 @@
       <v-app-bar-nav-icon v-if="$store.state.login_user" @click="toggleSideMenu"></v-app-bar-nav-icon>
       <v-toolbar-title>Knowder</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items >
+      <v-toolbar-items>
         <v-btn text v-if="!$store.state.login_user">
-          <v-icon>mdi-exit-to-app</v-icon> 
+          <v-icon>mdi-exit-to-app</v-icon>
           <span @click="logout">Logout</span>
         </v-btn>
       </v-toolbar-items>
@@ -36,6 +36,7 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user);
+        this.fetchWork()
         if (this.$router.currentRoute.name === "Home") {
           this.$router.push({ name: "Account" }, () => {});
         }
@@ -51,7 +52,8 @@ export default {
       "toggleSideMenu",
       "logout",
       "setLoginUser",
-      "deleteLoginUser"
+      "deleteLoginUser",
+      "fetchWork"
     ])
   }
 };
