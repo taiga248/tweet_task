@@ -3,8 +3,7 @@
     <v-card-text>
       <h2 class="text-center my-3">今日やったこと</h2>
       <v-form class="mx-5 my-10">
-        <!-- <v-select :items="tags" :v-model="tagChecked()" label="タグ"></v-select> -->
-        <v-select :items="tags" label="タグ"></v-select>
+        <v-select :items="tags" v-model="tagChecked" label="タグ"></v-select>
         <p class="text-center">
           何時間作業した？
           <span class="title">- {{ working_time }}h -</span>
@@ -13,7 +12,7 @@
         <v-textarea outlined v-model="text" :rules="textRules" label="内容"></v-textarea>
 
         <div class="text-center mb-10">
-          <v-btn>キャンセル</v-btn>
+          <v-btn @click="form_init">キャンセル</v-btn>
           <v-btn color="info" class="ml-2" @click="save">記録</v-btn>
         </div>
       </v-form>
@@ -22,22 +21,42 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
       tags: ["仕事", "勉強", "課題"],
-      tagChecked: [],
+      tagChecked: "",
       working_time: 4,
       text: "",
+      now: new Date(),
       textRules: [v => !!v || "入力必須です"]
     };
   },
   methods: {
     save() {
-      console.log(
-        this.tagChecked + " : " + this.working_time + " : " + this.text
-      );
-    }
+      const work_data = {
+        tag: this.tagChecked,
+        time: this.working_time,
+        text: this.text,
+        createAt: this.now
+      };
+
+      /* Debug */
+      console.log("components : ");
+      console.log(work_data);
+      /*  */
+
+      this.addWork(work_data);
+      this.$router.push({ name: "Recode" });
+    },
+    form_init() {
+      this.tagChecked = "";
+      this.time = "";
+      this.text = "";
+    },
+    ...mapActions(["addWork"])
   }
 };
 </script>
