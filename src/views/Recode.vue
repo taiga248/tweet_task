@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout>
+    <v-layout row wrap>
       <v-flex xs12 sm6>
         <Analytics />
       </v-flex>
