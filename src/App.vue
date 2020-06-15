@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="toggleSideMenu"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon v-if="$store.state.login_user" @click="toggleSideMenu"></v-app-bar-nav-icon>
       <v-toolbar-title>Knowder</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn text>
-          <v-icon>mdi-exit-to-app</v-icon>
-          <span>Logout</span>
+      <v-toolbar-items >
+        <v-btn text v-if="!$store.state.login_user">
+          <v-icon>mdi-exit-to-app</v-icon> 
+          <span @click="logout">Logout</span>
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>

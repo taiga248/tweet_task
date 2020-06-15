@@ -80,8 +80,6 @@ export default {
           color: "info"
         }
       ],
-      // photoURL:
-      //   "https://images.pexels.com/photos/3704460/pexels-photo-3704460.jpeg?cs=srgb&dl=pexels-3704460.jpg&fm=jpg"
     };
   },
   computed: {
