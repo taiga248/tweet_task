@@ -1,29 +1,10 @@
-# app
+# Tweet Task (Now coding...)
 
-## Project setup
-```
-npm install
-```
+これは自分が活動してきた記録を残し、モチベーションをあげる目的を持ったアプリケーションです。
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 機能
+- 勉強
+- 仕事
+- 課題
+の３つのタグがありそれぞれ独立しています。
+何か作業が終了すると共にデータを打ち込み、送信していただくことでAnalyticsページとDoneページに追加されます。
