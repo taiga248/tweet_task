@@ -9,7 +9,7 @@
             </v-avatar>
           </v-responsive>
           <v-card-text>
-            <p class="title">userName</p>
+            <p class="title">{{userName}}</p>
             <div class="text-left ml-6">
               <p class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import AddTaskForm from "@/components/Account/AddTaskForm";
 
 export default {
@@ -80,12 +80,12 @@ export default {
           color: "info"
         }
       ],
-      photoURL:
-        "https://images.pexels.com/photos/3704460/pexels-photo-3704460.jpeg?cs=srgb&dl=pexels-3704460.jpg&fm=jpg"
+      // photoURL:
+      //   "https://images.pexels.com/photos/3704460/pexels-photo-3704460.jpeg?cs=srgb&dl=pexels-3704460.jpg&fm=jpg"
     };
   },
   computed: {
-    // ...mapGetters(["userName", "photoURL"])
+    ...mapGetters(["userName", "photoURL"])
   }
 };
 </script>

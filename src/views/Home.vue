@@ -1,10 +1,11 @@
 <template>
   <v-container>
-    <v-layout>
-      <v-flex>
-        <v-btn text primary @click="login">
+    <v-layout wrap row>
+      <v-flex xs12>
+        <h1>Home page</h1>
+        <v-btn @click="login" color="primary">
+          <v-icon>mdi-in</v-icon>
           <span>Login</span>
-          <v-icon right>mdi-email</v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
@@ -12,12 +13,13 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
-  name: "Home",
+  components: {},
   methods: {
-    login() {
-      console.log("login");
-    }
-  }
+    ...mapActions(["login"])
+  },
+  computed: {}
 };
 </script>

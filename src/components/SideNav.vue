@@ -3,10 +3,10 @@
     <v-list>
       <v-list-item>
         <v-list-item-avatar>
-          <!-- <img v-if="photoURL" :src="photoURL" /> -->
+          <img v-if="photoURL" :src="photoURL" />
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title>userName</v-list-item-title>
+          <v-list-item-title>{{ userName }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
@@ -25,7 +25,8 @@
 </template>
 
 <script>
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
   name: "SideNav",
   data() {
@@ -45,7 +46,7 @@ export default {
     };
   },
   computed: {
-    // ...mapGetters(["userName", "photoURL"])
+    ...mapGetters(["userName", "photoURL"])
   }
 };
 </script>
