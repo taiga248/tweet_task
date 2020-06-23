@@ -8,8 +8,13 @@
           何時間作業した？
           <span class="title">- {{ working_time }}h -</span>
         </p>
-        <v-slider v-model="working_time" max="12"></v-slider>
-        <v-textarea outlined v-model="text" :rules="textRules" label="内容"></v-textarea>
+        <v-slider v-model.number="working_time" max="12"></v-slider>
+        <v-textarea
+          outlined
+          v-model="text"
+          :rules="textRules"
+          label="内容"
+        ></v-textarea>
 
         <div class="text-center mb-10">
           <v-btn @click="form_init">キャンセル</v-btn>
@@ -42,8 +47,11 @@ export default {
         text: this.text,
         createAt: this.now
       };
-      // this.totalTime(this.working_time);
+      const times = {
+        time: this.working_time
+      };
       this.addWork(work_data);
+      this.addTime(times);
       this.$router.push({ name: "Recode" });
     },
     form_init() {
@@ -51,9 +59,7 @@ export default {
       this.time = "";
       this.text = "";
     },
-    ...mapActions(["addWork", "totalTime"])
+    ...mapActions(["addWork", "addTime"])
   }
 };
 </script>
-
-<style></style>

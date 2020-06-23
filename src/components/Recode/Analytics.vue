@@ -2,7 +2,12 @@
   <div class="mx-5">
     <h3 class="text-center my-5">Analytics</h3>
     <v-card class="mx-auto py-5">
-      <v-sheet class="mx-auto my-5 py-12" color="cyan" elevation="6" max-width="calc(100% - 32px)">
+      <v-sheet
+        class="mx-auto my-5 py-12"
+        color="cyan"
+        elevation="6"
+        max-width="calc(100% - 32px)"
+      >
         <v-sparkline
           :labels="label"
           :value="value"
@@ -22,8 +27,8 @@
         </v-list-item>
         <v-list-item>
           合計時間 :
-          <!-- <span class="font-weight-medium">{{ totalTime }}</span> -->
-          <span class="font-weight-medium">totalTime</span>
+          <!-- <span class="font-weight-medium">{{ this.$store.state.totalTime }}</span> -->
+          <span class="font-weight-medium">{{ totalTime }}</span>
           時間
         </v-list-item>
         <v-list-item>
@@ -39,33 +44,32 @@
           <span>ツイートする</span>
         </v-btn>
       </v-card-actions>
-      <!-- debug -->
-      <v-btn @click="log">Total time : debug btn</v-btn>
     </v-card>
+    <v-btn @click="log">btn</v-btn>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   created() {
-    // this.totalTime = this.$store.state.totalTime;
+    this.works = this.$store.state.works;
+    this.totalTime = this.$store.state.totalTime;
+    console.log("Analytics totalTime : " + this.totalTime);
   },
   data() {
     return {
-      // totalTime: {},
-      label: ["月", "火", "水", "木", "金", "土", "日"],
-      /* firestoreから引っ張ってくる */
-      value: [1, 4, 15, 1, 6, 9, 1]
+      works: [],
+      totalTime: 0,
+      label: ["仕事", "勉強", "課題"],
+      value: [1, 4, 15]
     };
   },
   methods: {
     log() {
-      console.log("Analytics : ");
-      // console.log(this.totalTime);
+      console.log(this.totalTime);
     }
-    /* 7で割ってそれぞれに入れる */
-    // addValue() {}
   },
   computed: {
     ...mapGetters(["userName"])
