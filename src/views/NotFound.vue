@@ -7,7 +7,7 @@
         <br />Please move to another page.
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" class="mx-auto mt-5" :to="{ name: 'Account'}">
+        <v-btn color="primary" class="mx-auto mt-5" :to="{ name: 'Account' }">
           <v-icon left>mdi-account</v-icon>
           <span>アカウントページ</span>
         </v-btn>
@@ -19,6 +19,3 @@
 <script>
 export default {};
 </script>
-
-<style>
-</style>

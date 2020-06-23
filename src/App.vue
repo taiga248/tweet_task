@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-nav-icon v-if="$store.state.login_user" @click="toggleSideMenu"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        v-if="$store.state.login_user"
+        @click="toggleSideMenu"
+      ></v-app-bar-nav-icon>
       <v-toolbar-title>Knowder</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -38,7 +41,7 @@ export default {
       if (user) {
         this.setLoginUser(user);
         this.fetchWork();
-        // this.fetchTime();
+        this.fetchTime();
         if (this.$router.currentRoute.name === "Home") {
           this.$router.push({ name: "Account" }, () => {});
         }
@@ -55,8 +58,8 @@ export default {
       "logout",
       "setLoginUser",
       "deleteLoginUser",
-      "fetchWork"
-      // "fetchTime"
+      "fetchWork",
+      "fetchTime"
     ])
   }
 };

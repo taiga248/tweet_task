@@ -43,7 +43,14 @@
               </p>
             </div>
             <div class="mx-auto">
-              <v-chip class="mx-1" dark :color="tag.color" label v-for="(tag, i) in tags" :key="i">
+              <v-chip
+                class="mx-1"
+                dark
+                :color="tag.color"
+                label
+                v-for="(tag, i) in tags"
+                :key="i"
+              >
                 <v-icon left>mdi-label</v-icon>
                 <span>{{ tag.text }}</span>
               </v-chip>
