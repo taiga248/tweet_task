@@ -10,8 +10,8 @@ export default new Vuex.Store({
   state: {
     login_user: null,
     drawer: false,
-    works: []
-    // totalTime: {}
+    works: [],
+    totalTime: 0
   },
   mutations: {
     setLoginUser(state, user) {
@@ -26,14 +26,16 @@ export default new Vuex.Store({
     addWork(state, { id, work }) {
       work.id = id;
       state.works.push(work);
+    },
+    addTime(state, { time }) {
+      // state.totalTime = 0;
+      console.log("");
+      console.log("- Add & fetch time -");
+      console.log("引数 Time : " + time);
+      state.totalTime += time;
+      console.log("State totalTime : " + state.totalTime);
+      console.log("");
     }
-    // totalTime(state, time) {
-    //   console.log("State :");
-    //   console.log(time);
-    //   state.totalTime.push(time);
-    //   console.log("State :");
-    //   console.log(state.totalTime);
-    // }
   },
   actions: {
     login() {
@@ -75,29 +77,33 @@ export default new Vuex.Store({
             );
           });
       }
+    },
+    addTime({ getters }, time) {
+      if (getters.uid) {
+        firebase
+          .firestore()
+          .collection(`works/${getters.uid}/totalTime`)
+          .doc("time")
+          .set(time, { merge: true });
+      }
+    },
+    fetchTime({ getters, commit }) {
+      if (getters.uid) {
+        firebase
+          .firestore()
+          .collection(`works/${getters.uid}/totalTime`)
+          .doc("time")
+          .onSnapshot(doc => {
+            console.log("");
+            console.log("- Snap Shot -");
+            console.log("変更を検知しました。");
+            console.log("doc.data().time : " + doc.data().time);
+            console.log("");
+
+            commit("addTime", { time: doc.data().time });
+          });
+      }
     }
-    // totalTime({ getters, commit }, time) {
-    //   if (getters.uid) {
-    //     firebase
-    //       .firestore()
-    //       .collection(`works/${getters.uid}/totalTime`)
-    //       .add(time)
-    //       .then(doc => {
-    //         commit("totalTime", { id: doc.id, time });
-    //       });
-    //   }
-    // },
-    // fetchTime({ getters, commit }) {
-    //   if (getters.uid) {
-    //     firebase
-    //       .firestore()
-    //       .collection(`works/${getters.uid}/totalTime`)
-    //       .get()
-    //       .then(snapshot => {
-    //         snapshot.forEach(doc => commit("totalTime", doc.data()));
-    //       });
-    //   }
-    // }
   },
   getters: {
     userName: state => (state.login_user ? state.login_user.displayName : ""),

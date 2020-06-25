@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   created() {
@@ -58,6 +58,14 @@ export default {
     this.totalTime = this.$store.state.totalTime;
     console.log("Analytics totalTime : " + this.totalTime);
   },
+  // mounted() {
+  //   this.$nextTick(() => {
+  //     this.fetchTime().then(() => {
+  //       this.totalTime = this.$store.state.totalTime;
+  //       console.log("Analytics totalTime : " + this.totalTime);
+  //     });
+  //   });
+  // },
   data() {
     return {
       works: [],
@@ -69,7 +77,8 @@ export default {
   methods: {
     log() {
       console.log(this.totalTime);
-    }
+    },
+    ...mapActions(["fetchTime"])
   },
   computed: {
     ...mapGetters(["userName"])
