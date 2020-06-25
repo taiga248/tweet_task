@@ -2,21 +2,9 @@
   <div class="mx-5">
     <h3 class="text-center my-5">Analytics</h3>
     <v-card class="mx-auto py-5">
-      <v-sheet
-        class="mx-auto my-5 py-12"
-        color="cyan"
-        elevation="6"
-        max-width="calc(100% - 32px)"
-      >
-        <v-sparkline
-          :labels="label"
-          :value="value"
-          color="white"
-          line-width="2"
-          padding="8"
-          smooth="5"
-        ></v-sparkline>
-      </v-sheet>
+      <section class="chart">
+        <Chart class="chart__bar" :def="def_bar" :data="chart_data" />
+      </section>
 
       <v-card-text>
         <div class="title font-weight-light mb-2 ml-2">{{ userName }}</div>
@@ -51,8 +39,12 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import Chart from "vue-chartless";
 
 export default {
+  components: {
+    Chart
+  },
   created() {
     this.works = this.$store.state.works;
     this.totalTime = this.$store.state.totalTime;
@@ -70,8 +62,14 @@ export default {
     return {
       works: [],
       totalTime: 0,
-      label: ["仕事", "勉強", "課題"],
-      value: [1, 4, 15]
+      def_bar: {
+        type: "bar"
+      },
+      chart_data: [
+        { label: "仕事", value: 4 },
+        { label: "勉強", value: 2 },
+        { label: "課題", value: 14 }
+      ]
     };
   },
   methods: {
@@ -85,3 +83,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.chart {
+  padding: 8px 36px;
+}
+</style>

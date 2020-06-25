@@ -94,13 +94,16 @@ export default new Vuex.Store({
           .collection(`works/${getters.uid}/totalTime`)
           .doc("time")
           .onSnapshot(doc => {
-            console.log("");
-            console.log("- Snap Shot -");
-            console.log("変更を検知しました。");
-            console.log("doc.data().time : " + doc.data().time);
-            console.log("");
-
-            commit("addTime", { time: doc.data().time });
+            try {
+              console.log("");
+              console.log("- Snap Shot -");
+              console.log("変更を検知しました。");
+              console.log("doc.data().time : " + doc.data().time);
+              console.log("");
+              commit("addTime", { time: doc.data().time });
+            } catch (error) {
+              console.log(error);
+            }
           });
       }
     }
