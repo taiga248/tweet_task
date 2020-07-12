@@ -66,9 +66,9 @@ export default {
         type: "bar"
       },
       chart_data: [
-        { label: "仕事", value: 4 },
+        { label: "仕事", value: 3 },
         { label: "勉強", value: 2 },
-        { label: "課題", value: 14 }
+        { label: "課題", value: 13 }
       ]
     };
   },
@@ -85,7 +85,16 @@ export default {
 </script>
 
 <style scoped>
+* {
+  /* outline: blue solid 1px; */
+}
 .chart {
-  padding: 8px 36px;
+  padding: 16px 32px;
+  /* background: #bbb; */
+}
+.chart__bar{
+  border-radius: 15px;
+  padding: 16px 0;
+  /* background: #efefef; */
 }
 </style>
