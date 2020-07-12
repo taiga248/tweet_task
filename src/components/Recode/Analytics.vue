@@ -92,7 +92,7 @@ export default {
   padding: 16px 32px;
   /* background: #bbb; */
 }
-.chart__bar{
+.chart__bar {
   border-radius: 15px;
   padding: 16px 0;
   /* background: #efefef; */
