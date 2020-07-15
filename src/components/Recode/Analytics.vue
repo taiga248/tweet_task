@@ -27,7 +27,13 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text color="primary" class="mr-5" :href="tweetRef" target="_blank">
+        <v-btn
+          text
+          color="primary"
+          class="mr-5"
+          :href="tweetRef"
+          target="_blank"
+        >
           <v-icon>mdi-twitter</v-icon>
           <span>ツイートする</span>
         </v-btn>
