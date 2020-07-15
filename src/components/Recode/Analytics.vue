@@ -11,17 +11,18 @@
         <v-divider class="my-4"></v-divider>
         <v-list-item>
           <v-icon class="mr-2" left>mdi-clock</v-icon>
-          <span class="grey--text font-weight-light">ほにゃらら</span>
+          <span class="grey--text font-weight-light">今週の作業時間</span>
         </v-list-item>
         <v-list-item>
-          合計時間 :
-          <!-- <span class="font-weight-medium">{{ this.$store.state.totalTime }}</span> -->
-          <span class="font-weight-medium">{{ totalTime }}</span>
+          合計 :
+          <span class="font-weight-medium">{{
+            this.$store.state.totalTime
+          }}</span>
           時間
         </v-list-item>
         <v-list-item>
-          平均時間 :
-          <span class="font-weight-medium">this_week_average</span>
+          平均 :
+          <span class="font-weight-medium">{{ averageTotalTime }}</span>
           時間
         </v-list-item>
       </v-card-text>
@@ -39,7 +40,6 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-btn @click="log">btn</v-btn>
   </div>
 </template>
 
@@ -53,21 +53,10 @@ export default {
   },
   created() {
     this.works = this.$store.state.works;
-    this.totalTime = this.$store.state.totalTime;
-    console.log("Analytics totalTime : " + this.totalTime);
   },
-  // mounted() {
-  //   this.$nextTick(() => {
-  //     this.fetchTime().then(() => {
-  //       this.totalTime = this.$store.state.totalTime;
-  //       console.log("Analytics totalTime : " + this.totalTime);
-  //     });
-  //   });
-  // },
   data() {
     return {
       works: [],
-      totalTime: 0,
       def_bar: {
         type: "bar"
       },
@@ -79,21 +68,23 @@ export default {
       ref: "https://twitter.com/share?ref_src=twsrc%5Etfw"
     };
   },
-
   methods: {
-    log() {
-      console.log(this.totalTime);
-    },
     ...mapActions(["fetchTime"])
   },
   computed: {
     tweetRef() {
       return (
         this.ref +
-        "&text=今週は、平均 " +
-        this.totalTime +
+        "&text=今週は、合計 " +
+        this.$store.state.totalTime +
         " 時間作業しました！%0a"
       );
+    },
+    averageTotalTime() {
+      let average = this.$store.state.totalTime;
+      const n = 1;
+      average = Math.floor((average / 7) * Math.pow(10, n)) / Math.pow(10, n);
+      return average;
     },
     ...mapGetters(["userName"])
   }
@@ -105,12 +96,12 @@ export default {
   /* outline: blue solid 1px; */
 }
 .chart {
-  padding: 16px;
+  /* padding: 0 16px; */
   /* background: #bbb; */
 }
 .chart__bar {
-  border-radius: 15px;
-  padding: 16px 0;
+  /* border-radius: 15px; */
+  /* padding: 0; */
   /* background: #efefef; */
 }
 </style>

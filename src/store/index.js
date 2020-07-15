@@ -27,14 +27,8 @@ export default new Vuex.Store({
       work.id = id;
       state.works.push(work);
     },
-    addTime(state, { time }) {
-      // state.totalTime = 0;
-      console.log("");
-      console.log("- Add & fetch time -");
-      console.log("引数 Time : " + time);
-      state.totalTime += time;
-      console.log("State totalTime : " + state.totalTime);
-      console.log("");
+    addTime(state, time) {
+      state.totalTime += time.sum;
     }
   },
   actions: {
@@ -78,13 +72,40 @@ export default new Vuex.Store({
           });
       }
     },
-    addTime({ getters }, time) {
+    addTime({ getters }, times) {
       if (getters.uid) {
+        let existingTime = 0;
+        let addedTime = 0;
+        let time_data = {};
         firebase
           .firestore()
           .collection(`works/${getters.uid}/totalTime`)
           .doc("time")
-          .set(time, { merge: true });
+          .get()
+          .then(doc => {
+            if (doc.data() === undefined) {
+              // 初回アクセス時、コレクションがない時の挙動
+              firebase
+                .firestore()
+                .collection(`works/${getters.uid}/totalTime`)
+                .doc("time")
+                .set(times);
+            } else {
+              existingTime = doc.data().sum;
+              addedTime = parseInt(times.sum);
+              time_data = {
+                sum: existingTime + addedTime
+              };
+              // 既存の時間が二回足されてしまうので一時的な対処
+              // 本来actionsで値を触るのはダメ
+              this.state.totalTime = 0;
+              firebase
+                .firestore()
+                .collection(`works/${getters.uid}/totalTime`)
+                .doc("time")
+                .set(time_data);
+            }
+          });
       }
     },
     fetchTime({ getters, commit }) {
@@ -95,14 +116,13 @@ export default new Vuex.Store({
           .doc("time")
           .onSnapshot(doc => {
             try {
-              console.log("");
-              console.log("- Snap Shot -");
-              console.log("変更を検知しました。");
-              console.log("doc.data().time : " + doc.data().time);
-              console.log("");
-              commit("addTime", { time: doc.data().time });
+              if (doc.data() === undefined) {
+                commit("addTime", { sum: 0 });
+              } else {
+                commit("addTime", doc.data());
+              }
             } catch (error) {
-              console.log(error);
+              console.log("DB is empty.");
             }
           });
       }
