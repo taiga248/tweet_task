@@ -25,10 +25,6 @@ jobs:
         with:
           commit_message: Apply GitHub actions.
           ref: ${{ github.head_ref }}
-    steps:
-      - name: Checkout the repository
-        uses: actions/checkout@master
-
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
