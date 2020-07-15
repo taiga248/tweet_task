@@ -41,6 +41,8 @@ export default {
   },
   methods: {
     save() {
+      // 何もなかったら弾こうね あとで
+      // if(!text) return
       const work_data = {
         tag: this.tagChecked,
         time: this.working_time,
@@ -48,10 +50,12 @@ export default {
         createAt: this.now
       };
       const times = {
-        time: this.working_time
+        sum: this.working_time
       };
       this.addWork(work_data);
       this.addTime(times);
+      console.log("Add : " + times.sum);
+
       this.$router.push({ name: "Recode" });
     },
     form_init() {
