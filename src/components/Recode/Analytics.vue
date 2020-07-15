@@ -11,7 +11,7 @@
         <v-divider class="my-4"></v-divider>
         <v-list-item>
           <v-icon class="mr-2" left>mdi-clock</v-icon>
-          <span class="grey--text font-weight-light">1 week</span>
+          <span class="grey--text font-weight-light">ほにゃらら</span>
         </v-list-item>
         <v-list-item>
           合計時間 :
@@ -27,7 +27,13 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text color="primary" class="mr-5">
+        <v-btn
+          text
+          color="primary"
+          class="mr-5"
+          :href="tweetRef"
+          target="_blank"
+        >
           <v-icon>mdi-twitter</v-icon>
           <span>ツイートする</span>
         </v-btn>
@@ -69,9 +75,11 @@ export default {
         { label: "仕事", value: 3 },
         { label: "勉強", value: 2 },
         { label: "課題", value: 13 }
-      ]
+      ],
+      ref: "https://twitter.com/share?ref_src=twsrc%5Etfw"
     };
   },
+
   methods: {
     log() {
       console.log(this.totalTime);
@@ -79,6 +87,14 @@ export default {
     ...mapActions(["fetchTime"])
   },
   computed: {
+    tweetRef() {
+      return (
+        this.ref +
+        "&text=今週は、平均 " +
+        this.totalTime +
+        " 時間作業しました！%0a"
+      );
+    },
     ...mapGetters(["userName"])
   }
 };
@@ -89,7 +105,7 @@ export default {
   /* outline: blue solid 1px; */
 }
 .chart {
-  padding: 16px 32px;
+  padding: 16px;
   /* background: #bbb; */
 }
 .chart__bar {
