@@ -1,41 +1,20 @@
-name: build
+name: deploy_to_firebase_hosting
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
-  fmt_build:
+  deploy_to_firebase_hosting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: Run fmt_build
-        run: |
-          npm install
-          npm run lint
-          npm run build
-      - uses: stefanzweifel/git-auto-commit-action@v3.0.0
-        with:
-          commit_message: Apply GitHub actions.
-          ref: ${{ github.head_ref }}
-  deploy:
-    name: Deploy
-    needs: fmt_build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
+      - name: Checkout the repository
         uses: actions/checkout@master
+
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master    
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_ID : ${{ secrets.PROJECT_ID }}
-        with:
-          args: deploy --only hosting --token${{ FIREBASE_TOKEN }}
