@@ -33,6 +33,9 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
+        uses: w9jds/firebase-action@master    
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_ID : ${{ secrets.PROJECT_ID }}
         with:
-          args: deploy --only hosting --token${{ secrets.FIREBASE_TOKEN }}
+          args: deploy --only hosting --token${{ FIREBASE_TOKEN }}
