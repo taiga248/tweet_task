@@ -94,18 +94,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-* {
-  /* outline: blue solid 1px; */
-}
-.chart {
-  /* padding: 0 16px; */
-  /* background: #bbb; */
-}
-.chart__bar {
-  /* border-radius: 15px; */
-  /* padding: 0; */
-  /* background: #efefef; */
-}
-</style>
