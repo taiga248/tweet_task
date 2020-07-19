@@ -50,7 +50,10 @@ export default {
         createAt: this.now
       };
       const times = {
-        sum: this.working_time
+        sum: this.working_time,
+        work_sum: 0,
+        study_sum: 0,
+        task_sum: 0
       };
       this.addWork(work_data);
       this.addTime(times);
