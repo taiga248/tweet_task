@@ -2,12 +2,11 @@ name: build
 
 on:
   push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
-  fmt_build:
+  deploy_to_firebase_hosting:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
