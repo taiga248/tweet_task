@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.7c0c409bed55bde040eeb3c0d4978d83.js"
+  "/precache-manifest.824290e10e308b1349599efd5f76d877.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "tweet_task"});
