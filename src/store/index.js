@@ -76,7 +76,6 @@ export default new Vuex.Store({
       if (getters.uid) {
         let existingTime = 0;
         let addedTime = 0;
-        let time_data = {};
         firebase
           .firestore()
           .collection(`works/${getters.uid}/totalTime`)
@@ -93,8 +92,11 @@ export default new Vuex.Store({
             } else {
               existingTime = doc.data().sum;
               addedTime = parseInt(times.sum);
-              time_data = {
-                sum: existingTime + addedTime
+              times = {
+                sum: existingTime + addedTime,
+                work_sum: 0,
+                study_sum: 0,
+                task_sum: 0
               };
               // 既存の時間が二回足されてしまうので一時的な対処
               // 本来actionsで値を触るのはダメ
@@ -103,7 +105,7 @@ export default new Vuex.Store({
                 .firestore()
                 .collection(`works/${getters.uid}/totalTime`)
                 .doc("time")
-                .set(time_data);
+                .set(times);
             }
           });
       }
@@ -117,9 +119,16 @@ export default new Vuex.Store({
           .onSnapshot(doc => {
             try {
               if (doc.data() === undefined) {
-                commit("addTime", { sum: 0 });
+                const times = {
+                  sum: 0,
+                  work_sum: 0,
+                  study_sum: 0,
+                  task_sum: 0
+                };
+                commit("addTime", times);
               } else {
                 commit("addTime", doc.data());
+                console.log(doc.data());
               }
             } catch (error) {
               console.log("DB is empty.");
