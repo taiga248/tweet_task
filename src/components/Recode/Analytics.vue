@@ -15,9 +15,7 @@
         </v-list-item>
         <v-list-item>
           合計 :
-          <span class="font-weight-medium">
-            {{ this.$store.state.totalTime }}
-          </span>
+          <span class="font-weight-medium">{{ this.$store.state.totalTime }}</span>
           時間
         </v-list-item>
         <v-list-item>
@@ -28,13 +26,7 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn
-          text
-          color="primary"
-          class="mr-5"
-          :href="tweetRef"
-          target="_blank"
-        >
+        <v-btn text color="primary" class="mr-5" :href="tweetRef" target="_blank">
           <v-icon>mdi-twitter</v-icon>
           <span>ツイートする</span>
         </v-btn>
@@ -53,6 +45,10 @@ export default {
   },
   created() {
     this.works = this.$store.state.works;
+    // 既存の時間が二回足されてしまうので一時的な対処
+    this.$store.state.work_sum = 0;
+    this.$store.state.study_sum = 0;
+    this.$store.state.task_sum = 0;
   },
   data() {
     return {
@@ -61,7 +57,8 @@ export default {
         type: "bar"
       },
       // ref: "https://twitter.com/share?ref_src=twsrc%5Etfw"
-      ref: "https://twitter.com/share?ref_src=https://tweet-task.web.app"
+      // ref: "https://twitter.com/share?ref_src=https://tweet-task.web.app"
+      ref: "https://twitter.com/share?ref_src="
     };
   },
   methods: {
@@ -71,16 +68,16 @@ export default {
     tweetRef() {
       return (
         this.ref +
-        "&text=今週は、合計 " +
+        "https://tweet-task.web.app&text=今週は、合計 " +
         this.$store.state.totalTime +
         " 時間作業しました！%0a"
       );
     },
     handleData() {
       let chart_data = [
-        { label: "仕事", value: this.$store.state.totalTime },
-        { label: "勉強", value: this.$store.state.totalTime },
-        { label: "課題", value: this.$store.state.totalTime }
+        { label: "仕事", value: this.$store.state.work_sum },
+        { label: "勉強", value: this.$store.state.study_sum },
+        { label: "課題", value: this.$store.state.task_sum }
       ];
       return chart_data;
     },
