@@ -11,10 +11,12 @@ export default new Vuex.Store({
     login_user: null,
     drawer: false,
     works: [],
-    totalTime: 0,
-    work_sum: 0,
-    study_sum: 0,
-    task_sum: 0
+    times: {
+      totalTime: 0,
+      work_sum: 0,
+      study_sum: 0,
+      task_sum: 0
+    }
   },
   mutations: {
     setLoginUser(state, user) {
@@ -30,11 +32,13 @@ export default new Vuex.Store({
       work.id = id;
       state.works.push(work);
     },
-    addTime(state, time) {
-      state.totalTime += time.sum;
-      state.work_sum += time.work_sum;
-      state.study_sum += time.study_sum;
-      state.task_sum += time.task_sum;
+    addTime(state, times) {
+      state.times = {
+        totalTime: (state.times.totalTime += times.sum),
+        work_sum: (state.times.work_sum += times.work_sum),
+        study_sum: (state.times.study_sum += times.study_sum),
+        task_sum: (state.times.task_sum += times.task_sum)
+      };
     }
   },
   actions: {
@@ -95,16 +99,15 @@ export default new Vuex.Store({
                 .set(times);
             } else {
               const existingTotalTime = doc.data().sum;
-              const addedTime = parseInt(times.sum);
               times = {
-                sum: existingTotalTime + addedTime,
+                sum: existingTotalTime + times.sum,
                 work_sum: times.work_sum,
                 study_sum: times.study_sum,
                 task_sum: times.task_sum
               };
               // 既存の時間が二回足されてしまうので一時的な対処
               // 本来actionsで値を触るのはダメ
-              this.state.totalTime = 0;
+              this.state.times.totalTime = 0;
               firebase
                 .firestore()
                 .collection(`works/${getters.uid}/totalTime`)
@@ -122,6 +125,7 @@ export default new Vuex.Store({
           .doc("time")
           .onSnapshot(doc => {
             try {
+              // 何もない時は初期データ埋め込み
               if (doc.data() === undefined) {
                 const times = {
                   sum: 0,
