@@ -16,9 +16,7 @@
         <v-list-item>
           合計 :
           <span class="font-weight-medium">
-            {{
-            this.$store.state.times.totalTime
-            }}
+            {{ this.$store.state.times.totalTime }}
           </span>
           時間
         </v-list-item>
@@ -30,7 +28,13 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn text color="primary" class="mr-5" :href="tweetRef" target="_blank">
+        <v-btn
+          text
+          color="primary"
+          class="mr-5"
+          :href="tweetRef"
+          target="_blank"
+        >
           <v-icon>mdi-twitter</v-icon>
           <span>ツイートする</span>
         </v-btn>
