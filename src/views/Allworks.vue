@@ -1,34 +1,24 @@
 <template>
   <v-container>
     <v-layout wrap row>
-      <v-flex xs12 sm5>
-        <v-card class="card ma-4 text-center" height="500">
+      <v-flex xs12 sm4>
+        <v-card class="card ma-4 text-center">
           <v-responsive class="pt-4">
             <v-avatar size="150">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
           </v-responsive>
-          <v-card-text class="py-2">
+          <v-card-text>
             <p class="title">{{ userName }}</p>
             <v-list class="text-left">
               <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
-                <span>目標</span>
+                <span>目標 : 〇〇</span>
               </v-list-item>
               <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
-                <span>いつまで</span>
+                <span>いつまで : 〇〇</span>
               </v-list-item>
-              <v-list-item>
-                <v-spacer></v-spacer>
-                <v-card-actions>
-                  <v-btn text>
-                    <v-icon left>mdi-account-settings</v-icon>
-                    <span>Edit</span>
-                  </v-btn>
-                </v-card-actions>
-              </v-list-item>
-              <v-divider class="mx-auto" width="50%"></v-divider>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>
                 <span>総勉強時間</span>
@@ -44,7 +34,7 @@
                     :key="i"
                   >
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ tag.text }}</span>
+                    <span>00:00</span>
                   </v-chip>
                 </div>
               </v-list-item>
@@ -52,21 +42,14 @@
           </v-card-text>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm7>
-        <AddTaskForm />
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import AddTaskForm from "@/components/Account/AddTaskForm";
 
 export default {
-  components: {
-    AddTaskForm
-  },
   data() {
     return {
       tags: [
@@ -90,9 +73,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-* {
-  /* outline: solid 1px red; */
-}
-</style>
