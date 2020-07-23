@@ -1,5 +1,5 @@
 <template>
-  <v-card class="ma-4" height="600">
+  <v-card class="ma-4" height="500">
     <v-card-text>
       <h2 class="text-center my-3">今日やったこと</h2>
       <v-form class="mx-5 my-10">
@@ -9,7 +9,12 @@
           <span class="title">- {{ select_time }}h -</span>
         </p>
         <v-slider v-model.number="select_time" max="12"></v-slider>
-        <v-textarea outlined v-model="text" :rules="textRules" label="内容"></v-textarea>
+        <v-textarea
+          outlined
+          v-model="text"
+          :rules="textRules"
+          label="内容"
+        ></v-textarea>
 
         <div class="text-center mb-10">
           <v-btn @click="form_init">キャンセル</v-btn>
@@ -38,12 +43,9 @@ export default {
     };
   },
   created() {
-    this.work_time = this.$store.state.work_sum;
-    this.study_time = this.$store.state.study_sum;
-    this.task_time = this.$store.state.task_sum;
-    console.log("Created 仕事 " + this.work_time);
-    console.log("Created 勉強 " + this.study_time);
-    console.log("Created 課題 " + this.task_time);
+    this.work_time = this.$store.state.times.work_sum;
+    this.study_time = this.$store.state.times.study_sum;
+    this.task_time = this.$store.state.times.task_sum;
   },
   methods: {
     save() {
