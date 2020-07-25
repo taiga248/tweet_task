@@ -6,13 +6,6 @@
         @click="toggleSideMenu"
       ></v-app-bar-nav-icon>
       <v-toolbar-title>Knowder</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn text v-if="$store.state.login_user">
-          <v-icon>mdi-exit-to-app</v-icon>
-          <span @click="logout">Logout</span>
-        </v-btn>
-      </v-toolbar-items>
     </v-app-bar>
 
     <SideNav />
@@ -56,7 +49,6 @@ export default {
   methods: {
     ...mapActions([
       "toggleSideMenu",
-      "logout",
       "setLoginUser",
       "deleteLoginUser",
       "fetchWork",

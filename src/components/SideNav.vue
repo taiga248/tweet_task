@@ -26,11 +26,18 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+
+    <v-bottom-navigation absolute horizontal height="70">
+      <v-btn text class="mt-1" v-if="$store.state.login_user">
+        <v-icon>mdi-exit-to-app</v-icon>
+        <span @click="logout">ログアウト</span>
+      </v-btn>
+    </v-bottom-navigation>
   </v-navigation-drawer>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "SideNav",
@@ -59,6 +66,9 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    ...mapActions(["logout"])
   },
   computed: {
     ...mapGetters(["userName", "photoURL"])
