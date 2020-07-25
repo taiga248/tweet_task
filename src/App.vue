@@ -41,6 +41,7 @@ export default {
       if (user) {
         this.setLoginUser(user);
         this.fetchWork();
+        this.fetchProfile();
         this.fetchTime();
         if (this.$router.currentRoute.name === "Home") {
           this.$router.push({ name: "Account" }, () => {});
@@ -59,6 +60,7 @@ export default {
       "setLoginUser",
       "deleteLoginUser",
       "fetchWork",
+      "fetchProfile",
       "fetchTime"
     ])
   }

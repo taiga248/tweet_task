@@ -16,6 +16,10 @@ export default new Vuex.Store({
       work_sum: 0,
       study_sum: 0,
       task_sum: 0
+    },
+    profile: {
+      target: "",
+      limit: ""
     }
   },
   mutations: {
@@ -39,6 +43,9 @@ export default new Vuex.Store({
         study_sum: (state.times.study_sum += times.study_sum),
         task_sum: (state.times.task_sum += times.task_sum)
       };
+    },
+    setProfile(state, profile) {
+      state.profile = profile;
     }
   },
   actions: {
@@ -58,11 +65,54 @@ export default new Vuex.Store({
     toggleSideMenu({ commit }) {
       commit("toggleSideMenu");
     },
+    setProfile({ getters, commit }, profile) {
+      if (getters.uid) {
+        firebase
+          .firestore()
+          .collection(`users/${getters.uid}/profile`)
+          .doc("text")
+          .get()
+          .then(() => {
+            firebase
+              .firestore()
+              .collection(`users/${getters.uid}/profile`)
+              .doc("text")
+              .set(profile)
+              .then(() => {
+                commit("setProfile", profile);
+              });
+          });
+      }
+    },
+    fetchProfile({ getters, commit }) {
+      if (getters.uid) {
+        firebase
+          .firestore()
+          .collection(`users/${getters.uid}/profile`)
+          .doc("text")
+          .onSnapshot(doc => {
+            try {
+              // 何もない時は初期データ埋め込み
+              if (doc.data() === undefined) {
+                const profile = {
+                  target: "何か目標を決めましょう！",
+                  limit: "いつまでにやりますか？"
+                };
+                commit("setProfile", profile);
+              } else {
+                commit("setProfile", doc.data());
+              }
+            } catch (error) {
+              console.log("Profile is empty.");
+            }
+          });
+      }
+    },
     addWork({ getters, commit }, work) {
       if (getters.uid) {
         firebase
           .firestore()
-          .collection(`works/${getters.uid}/work`)
+          .collection(`users/${getters.uid}/work`)
           .add(work)
           .then(doc => {
             commit("addWork", { id: doc.id, work });
@@ -73,7 +123,7 @@ export default new Vuex.Store({
       if (getters.uid) {
         firebase
           .firestore()
-          .collection(`works/${getters.uid}/work`)
+          .collection(`users/${getters.uid}/work`)
           .get()
           .then(snapshot => {
             snapshot.forEach(doc =>
@@ -86,7 +136,7 @@ export default new Vuex.Store({
       if (getters.uid) {
         firebase
           .firestore()
-          .collection(`works/${getters.uid}/totalTime`)
+          .collection(`users/${getters.uid}/totalTime`)
           .doc("time")
           .get()
           .then(doc => {
@@ -94,8 +144,13 @@ export default new Vuex.Store({
               // 初回アクセス時、コレクションがない時の挙動
               firebase
                 .firestore()
-                .collection(`works/${getters.uid}/totalTime`)
+                .collection(`users/${getters.uid}/totalTime`)
                 .doc("time")
+                .set(times);
+              firebase
+                .firestore()
+                .collection(`AllUsers/${getters.uid}/works`)
+                .doc("sum")
                 .set(times);
             } else {
               const existingTotalTime = doc.data().sum;
@@ -110,8 +165,13 @@ export default new Vuex.Store({
               this.state.times.totalTime = 0;
               firebase
                 .firestore()
-                .collection(`works/${getters.uid}/totalTime`)
+                .collection(`users/${getters.uid}/totalTime`)
                 .doc("time")
+                .set(times);
+              firebase
+                .firestore()
+                .collection(`AllUsers/${getters.uid}/works`)
+                .doc("sum")
                 .set(times);
             }
           });
@@ -121,7 +181,7 @@ export default new Vuex.Store({
       if (getters.uid) {
         firebase
           .firestore()
-          .collection(`works/${getters.uid}/totalTime`)
+          .collection(`users/${getters.uid}/totalTime`)
           .doc("time")
           .onSnapshot(doc => {
             try {
@@ -136,8 +196,6 @@ export default new Vuex.Store({
                 commit("addTime", times);
               } else {
                 commit("addTime", doc.data());
-                console.log("DB data : ");
-                console.log(doc.data());
               }
             } catch (error) {
               console.log("DB is empty.");
