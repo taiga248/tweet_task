@@ -27,15 +27,15 @@
                 <div class="mx-auto">
                   <v-chip class="mr-1" :color="tags[0].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ this.$store.state.times.work_sum }}</span>
+                    <span>{{ times.work_sum }}</span>
                   </v-chip>
                   <v-chip class="mr-1" :color="tags[1].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ this.$store.state.times.study_sum }}</span>
+                    <span>{{ times.study_sum }}</span>
                   </v-chip>
                   <v-chip class="mr-1" :color="tags[2].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ this.$store.state.times.task_sum }}</span>
+                    <span>{{ times.task_sum }}</span>
                   </v-chip>
                 </div>
               </v-list-item>

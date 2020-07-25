@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card class="pa-3" :elevation="hover6">
+    <v-card class="py-3 pr-5 pl-3">
       <h2>目次</h2>
       <v-list>
         <v-list-item v-for="(title, i) in titles" :key="i">
