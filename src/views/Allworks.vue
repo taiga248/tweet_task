@@ -24,17 +24,10 @@
                 <span>総勉強時間</span>
               </v-list-item>
               <v-list-item>
-                <div class="mx-auto">
-                  <v-chip
-                    class="mx-1"
-                    dark
-                    :color="tag.color"
-                    label
-                    v-for="(tag, i) in tags"
-                    :key="i"
-                  >
+                <div class="mx-auto" v-for="(time, i) in times" :key="i">
+                  <v-chip class="mr-1" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>00:00</span>
+                    <span>{{ time }}</span>
                   </v-chip>
                 </div>
               </v-list-item>
@@ -52,21 +45,33 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
+      times: {},
       tags: [
-        {
-          text: "仕事",
-          color: "primary"
-        },
-        {
-          text: "勉強",
-          color: "success"
-        },
-        {
-          text: "課題",
-          color: "rgb(255, 69, 58)"
-        }
+        // {
+        //   text: "総合",
+        //   color: "grey"
+        // },
+        // {
+        //   text: "仕事",
+        //   color: "primary"
+        // },
+        // {
+        //   text: "勉強",
+        //   color: "success"
+        // },
+        // {
+        //   text: "課題",
+        //   color: "rgb(255, 69, 58)"
+        // }
+        "red",
+        "primary",
+        "success",
+        "rgb(255, 69, 58)"
       ]
     };
+  },
+  created() {
+    this.times = this.$store.state.times;
   },
   computed: {
     ...mapGetters(["userName", "photoURL"])
