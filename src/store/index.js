@@ -11,8 +11,8 @@ export default new Vuex.Store({
     login_user: null,
     drawer: false,
     works: [],
+    totalTime: 0,
     times: {
-      totalTime: 0,
       work_sum: 0,
       study_sum: 0,
       task_sum: 0
@@ -33,8 +33,8 @@ export default new Vuex.Store({
       state.works.push(work);
     },
     addTime(state, times) {
+      state.totalTime += times.sum;
       state.times = {
-        totalTime: (state.times.totalTime += times.sum),
         work_sum: (state.times.work_sum += times.work_sum),
         study_sum: (state.times.study_sum += times.study_sum),
         task_sum: (state.times.task_sum += times.task_sum)
@@ -105,9 +105,6 @@ export default new Vuex.Store({
                 study_sum: times.study_sum,
                 task_sum: times.task_sum
               };
-              // 既存の時間が二回足されてしまうので一時的な対処
-              // 本来actionsで値を触るのはダメ
-              this.state.times.totalTime = 0;
               firebase
                 .firestore()
                 .collection(`works/${getters.uid}/totalTime`)

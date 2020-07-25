@@ -13,25 +13,81 @@
             <v-list class="text-left">
               <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
+<<<<<<< Updated upstream
                 <span>目標</span>
+=======
+                <span class="grey--text">
+                  {{
+                  this.$store.state.profile.target
+                  }}
+                </span>
+>>>>>>> Stashed changes
               </v-list-item>
               <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
+<<<<<<< Updated upstream
                 <span>いつまで</span>
+=======
+                <span class="grey--text">
+                  {{
+                  this.$store.state.profile.limit
+                  }}
+                </span>
+>>>>>>> Stashed changes
               </v-list-item>
               <v-list-item>
                 <v-spacer></v-spacer>
                 <v-card-actions>
+<<<<<<< Updated upstream
                   <v-btn text>
                     <v-icon left>mdi-account-settings</v-icon>
                     <span>Edit</span>
                   </v-btn>
+=======
+                  <v-flex class="my-auto">
+                    <div class="text-center">
+                      <v-dialog v-model="formDrawer" width="500">
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-btn text v-bind="attrs" v-on="on">
+                            <v-icon left>mdi-account-settings</v-icon>Edit
+                          </v-btn>
+                        </template>
+                        <v-card>
+                          <v-card-title primary-title>Edit profile</v-card-title>
+                          <v-card-text>
+                            <v-form class="px-3">
+                              <v-text-field
+                                label="目標"
+                                v-model="profile.target"
+                                prepend-icon="mdi-pencil"
+                              ></v-text-field>
+                              <v-text-field
+                                label="いつまで"
+                                v-model="profile.limit"
+                                prepend-icon="mdi-calendar"
+                              ></v-text-field>
+                            </v-form>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="primary"
+                              :disabled="!profile.target || !profile.limit"
+                              text
+                              @click="submit"
+                            >変更する</v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </div>
+                  </v-flex>
+>>>>>>> Stashed changes
                 </v-card-actions>
               </v-list-item>
               <v-divider class="mx-auto" width="50%"></v-divider>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>
-                <span>総勉強時間</span>
+                <span>総勉強時間 : {{ this.$store.state.totalTime }}時間</span>
               </v-list-item>
               <v-list-item>
                 <div class="mx-auto">

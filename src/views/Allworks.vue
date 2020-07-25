@@ -13,17 +13,18 @@
             <v-list class="text-left">
               <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
-                <span>目標 : 〇〇</span>
+                <span>{{ this.$store.state.profile.target }}</span>
               </v-list-item>
               <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
-                <span>いつまで : 〇〇</span>
+                <span>{{ this.$store.state.profile.limit }}</span>:
               </v-list-item>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>
-                <span>総勉強時間</span>
+                <span>総勉強時間 : {{ this.$store.state.totalTime }}時間</span>
               </v-list-item>
               <v-list-item>
+<<<<<<< Updated upstream
                 <div class="mx-auto">
                   <v-chip
                     class="mx-1"
@@ -33,8 +34,26 @@
                     v-for="(tag, i) in tags"
                     :key="i"
                   >
+=======
+                <!-- <div class="mx-auto" v-for="(time, i) in times" :key="i">
+                  <v-chip class="mr-1" :color="tags[i].color" dark label>
+>>>>>>> Stashed changes
                     <v-icon left>mdi-label</v-icon>
                     <span>00:00</span>
+                  </v-chip>
+                </div>-->
+                <div class="mx-auto">
+                  <v-chip class="mr-1" :color="tags[0].color" dark label>
+                    <v-icon left>mdi-label</v-icon>
+                    <span>{{ times.work_sum }}</span>
+                  </v-chip>
+                  <v-chip class="mr-1" :color="tags[1].color" dark label>
+                    <v-icon left>mdi-label</v-icon>
+                    <span>{{ times.study_sum }}</span>
+                  </v-chip>
+                  <v-chip class="mr-1" :color="tags[2].color" dark label>
+                    <v-icon left>mdi-label</v-icon>
+                    <span>{{ times.task_sum }}</span>
                   </v-chip>
                 </div>
               </v-list-item>
