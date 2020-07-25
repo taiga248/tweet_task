@@ -13,21 +13,29 @@
             <v-list class="text-left">
               <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
-                <span>目標 : 〇〇</span>
+                <span>{{ this.$store.state.profile.target }}</span>
               </v-list-item>
               <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
-                <span>いつまで : 〇〇</span>
+                <span>{{ this.$store.state.profile.limit }}</span>
               </v-list-item>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>
-                <span>総勉強時間</span>
+                <span>総勉強時間 : {{ this.$store.state.totalTime }}時間</span>
               </v-list-item>
               <v-list-item>
-                <div class="mx-auto" v-for="(time, i) in times" :key="i">
-                  <v-chip class="mr-1" dark label>
+                <div class="mx-auto">
+                  <v-chip class="mr-1" :color="tags[0].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ time }}</span>
+                    <span>{{ this.$store.state.times.work_sum }}</span>
+                  </v-chip>
+                  <v-chip class="mr-1" :color="tags[1].color" dark label>
+                    <v-icon left>mdi-label</v-icon>
+                    <span>{{ this.$store.state.times.study_sum }}</span>
+                  </v-chip>
+                  <v-chip class="mr-1" :color="tags[2].color" dark label>
+                    <v-icon left>mdi-label</v-icon>
+                    <span>{{ this.$store.state.times.task_sum }}</span>
                   </v-chip>
                 </div>
               </v-list-item>
@@ -47,26 +55,18 @@ export default {
     return {
       times: {},
       tags: [
-        // {
-        //   text: "総合",
-        //   color: "grey"
-        // },
-        // {
-        //   text: "仕事",
-        //   color: "primary"
-        // },
-        // {
-        //   text: "勉強",
-        //   color: "success"
-        // },
-        // {
-        //   text: "課題",
-        //   color: "rgb(255, 69, 58)"
-        // }
-        "red",
-        "primary",
-        "success",
-        "rgb(255, 69, 58)"
+        {
+          text: "仕事",
+          color: "primary"
+        },
+        {
+          text: "勉強",
+          color: "success"
+        },
+        {
+          text: "課題",
+          color: "rgb(255, 69, 58)"
+        }
       ]
     };
   },
