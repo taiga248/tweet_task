@@ -16,7 +16,7 @@
         <v-list-item>
           合計 :
           <span class="font-weight-medium">
-            {{ this.$store.state.times.totalTime }}
+            {{ this.$store.state.totalTime }}
           </span>
           時間
         </v-list-item>
@@ -71,7 +71,7 @@ export default {
       return (
         this.ref +
         "https://tweet-task.web.app&text=今週は、合計 " +
-        this.$store.state.times.totalTime +
+        this.$store.state.totalTime +
         " 時間作業しました！%0a"
       );
     },
@@ -84,7 +84,7 @@ export default {
       return chart_data;
     },
     averageTotalTime() {
-      let average = this.$store.state.times.totalTime;
+      let average = this.$store.state.totalTime;
       const point = 1;
       average =
         Math.floor((average / 7) * Math.pow(10, point)) / Math.pow(10, point);

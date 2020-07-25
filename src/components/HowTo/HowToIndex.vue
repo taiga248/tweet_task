@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-list class="mx-10">
+    <v-list>
       <v-list-item v-for="(title, i) in titles" :key="i">
         <v-list-item-content>
           <v-list-item-title class="title">{{ title.title }}</v-list-item-title>
@@ -15,7 +15,7 @@
 export default {
   props: {
     titles: {
-      type: String
+      type: Object
     }
   }
 };
