@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import Chart from "vue-chartless";
 
 export default {
@@ -53,10 +53,6 @@ export default {
   },
   created() {
     this.works = this.$store.state.works;
-    // 既存の時間が二回足されてしまうので一時的な対処
-    this.$store.state.times.work_sum = 0;
-    this.$store.state.times.study_sum = 0;
-    this.$store.state.times.task_sum = 0;
   },
   data() {
     return {
@@ -69,9 +65,6 @@ export default {
       // ref: "https://twitter.com/share?ref_src=https://tweet-task.web.app"
       ref: "https://twitter.com/share?ref_src="
     };
-  },
-  methods: {
-    ...mapActions(["fetchTime"])
   },
   computed: {
     tweetRef() {
