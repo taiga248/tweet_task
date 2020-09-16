@@ -33,6 +33,7 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user);
+        this.fetchLoginUsers();
         this.fetchWork();
         this.fetchProfile();
         this.fetchTime();
@@ -50,6 +51,7 @@ export default {
     ...mapActions([
       "toggleSideMenu",
       "setLoginUser",
+      "fetchLoginUsers",
       "deleteLoginUser",
       "fetchWork",
       "fetchProfile",

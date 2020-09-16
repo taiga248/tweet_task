@@ -2,8 +2,8 @@
   <div class="mx-5">
     <h3 class="text-center my-5">Analytics</h3>
     <v-card class="mx-auto py-5">
-      <section class="chart">
-        <Chart class="chart__bar" :def="def_bar" :data="handleData" />
+      <section>
+        <Chart class="ma-5" :def="def_bar" :data="handleData" />
       </section>
 
       <v-card-text>
@@ -11,7 +11,7 @@
         <v-divider class="my-4"></v-divider>
         <v-list-item>
           <v-icon class="mr-2" left>mdi-clock</v-icon>
-          <span class="grey--text font-weight-light">今週の作業時間</span>
+          <span class="grey--text font-weight-light">作業時間</span>
         </v-list-item>
         <v-list-item>
           合計 :
