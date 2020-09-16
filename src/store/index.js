@@ -20,11 +20,17 @@ export default new Vuex.Store({
     profile: {
       target: "",
       limit: ""
-    }
+    },
+    AllUsers: []
   },
   mutations: {
     setLoginUser(state, user) {
       state.login_user = user;
+    },
+    fetchLoginUsers(state, users) {
+      state.AllUsers.push(users);
+      console.log("State : ");
+      console.dir(users);
     },
     deleteLoginUser(state) {
       state.login_user = null;
@@ -58,6 +64,23 @@ export default new Vuex.Store({
     },
     setLoginUser({ commit }, user) {
       commit("setLoginUser", user);
+    },
+    fetchLoginUsers({ commit }) {
+      console.log("Fetch Users");
+      firebase
+        .firestore()
+        .collection(`users`)
+        .doc("qXaEmArZUHeUAGQdUD78djZSoBJ3")
+        .collection("totalTime")
+        .doc("time")
+        .get()
+        .then(doc => {
+          commit("fetchLoginUsers", doc.data());
+          console.log(doc.data());
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
     deleteLoginUser({ commit }) {
       commit("deleteLoginUser");
@@ -147,11 +170,12 @@ export default new Vuex.Store({
                 .collection(`users/${getters.uid}/totalTime`)
                 .doc("time")
                 .set(times);
-              firebase
-                .firestore()
-                .collection(`AllUsers/${getters.uid}/works`)
-                .doc("sum")
-                .set(times);
+              // ALLWORKS firebase.firestore().collection(`AllUsers/${getters.uid}/works`).doc("sum").add(times)
+              // firebase
+              //   .firestore()
+              //   .collection(`AllUsers/${getters.uid}/works`)
+              //   .doc("sum")
+              //   .set(times);
             } else {
               const existingTotalTime = doc.data().sum;
               times = {
@@ -160,16 +184,18 @@ export default new Vuex.Store({
                 study_sum: times.study_sum,
                 task_sum: times.task_sum
               };
+              this.state.totalTime = 0;
               firebase
                 .firestore()
                 .collection(`users/${getters.uid}/totalTime`)
                 .doc("time")
                 .set(times);
-              firebase
-                .firestore()
-                .collection(`AllUsers/${getters.uid}/works`)
-                .doc("sum")
-                .set(times);
+              // ALLWORKS firebase.firestore().collection(`AllUsers/${getters.uid}/works`).doc("sum").add(times)
+              // firebase
+              //   .firestore()
+              //   .collection(`AllUsers/${getters.uid}/works`)
+              //   .doc("test")
+              //   .set(times);
             }
           });
       }

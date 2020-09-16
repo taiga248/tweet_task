@@ -17,7 +17,7 @@
 export default {
   props: {
     titles: {
-      type: Object
+      type: Array
     }
   }
 };

@@ -11,17 +11,17 @@
           <v-card-text class="py-2">
             <p class="title">{{ userName }}</p>
             <v-list class="text-left">
-              <v-list-item class="grey--text mx-3">
+              <v-list-item class="grey--text mx-2">
                 <v-icon left>mdi-pencil</v-icon>
-                <span class="grey--text">
-                  {{ this.$store.state.profile.target }}
-                </span>
+                <span class="grey--text">{{
+                  this.$store.state.profile.target
+                }}</span>
               </v-list-item>
-              <v-list-item class="grey--text mx-3">
+              <v-list-item class="grey--text mx-2">
                 <v-icon left>mdi-calendar</v-icon>
-                <span class="grey--text">
-                  {{ this.$store.state.profile.limit }}
-                </span>
+                <span class="grey--text">{{
+                  this.$store.state.profile.limit
+                }}</span>
               </v-list-item>
               <v-list-item>
                 <v-spacer></v-spacer>
@@ -71,12 +71,12 @@
               <v-divider class="mx-auto" width="50%"></v-divider>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>
-                <span>総勉強時間 : {{ this.$store.state.totalTime }}時間</span>
+                <span>総作業時間 : {{ this.$store.state.totalTime }}時間</span>
               </v-list-item>
               <v-list-item>
                 <div class="mx-auto">
                   <v-chip
-                    class="mr-1"
+                    class="mr-1 px-1"
                     dark
                     :color="tag.color"
                     label
@@ -152,3 +152,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+* {
+  /* outline: red 1px solid; */
+}
+</style>

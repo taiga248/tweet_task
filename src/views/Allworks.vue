@@ -1,41 +1,47 @@
 <template>
   <v-container>
     <v-layout wrap row>
-      <v-flex xs12 sm4>
-        <v-card class="card ma-4 text-center">
-          <v-responsive class="pt-4">
+      <v-flex xs12 sm6 md4>
+        <v-card class="text-center">
+          <v-responsive class="pt-2">
             <v-avatar size="150">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
           </v-responsive>
+          <v-card-title>
+            <div class="mx-auto">{{ userName }}</div>
+          </v-card-title>
           <v-card-text>
-            <p class="title">{{ userName }}</p>
             <v-list class="text-left">
               <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
-                <span>{{ this.$store.state.profile.target }}</span>
+                <span class="grey--text">{{
+                  this.$store.state.profile.target
+                }}</span>
               </v-list-item>
               <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
-                <span>{{ this.$store.state.profile.limit }}</span>
+                <span class="grey--text">{{
+                  this.$store.state.profile.limit
+                }}</span>
               </v-list-item>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>
-                <span>総勉強時間 : {{ this.$store.state.totalTime }}時間</span>
+                <span>総作業時間 : {{ this.$store.state.totalTime }}時間</span>
               </v-list-item>
               <v-list-item>
                 <div class="mx-auto">
                   <v-chip class="mr-1" :color="tags[0].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ times.work_sum }}</span>
+                    <span>{{ times.work_sum }}h</span>
                   </v-chip>
                   <v-chip class="mr-1" :color="tags[1].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ times.study_sum }}</span>
+                    <span>{{ times.study_sum }}h</span>
                   </v-chip>
-                  <v-chip class="mr-1" :color="tags[2].color" dark label>
+                  <v-chip :color="tags[2].color" dark label>
                     <v-icon left>mdi-label</v-icon>
-                    <span>{{ times.task_sum }}</span>
+                    <span>{{ times.task_sum }}h</span>
                   </v-chip>
                 </div>
               </v-list-item>
