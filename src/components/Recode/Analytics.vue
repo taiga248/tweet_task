@@ -3,7 +3,7 @@
     <h3 class="text-center my-5">Analytics</h3>
     <v-card class="mx-auto py-5">
       <section>
-        <Chart class="ma-5" :def="def_bar" :data="handleData" />
+        <Chart class="my-1 px-3" />
       </section>
 
       <v-card-text>
@@ -45,7 +45,7 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Chart from "vue-chartless";
+import Chart from "@/components/Recode/Chart";
 
 export default {
   components: {
@@ -57,12 +57,6 @@ export default {
   data() {
     return {
       works: [],
-      def_bar: {
-        type: "bar"
-      },
-      // Androidのみ何故かOGP出ず
-      // ref: "https://twitter.com/share?ref_src=twsrc%5Etfw"
-      // ref: "https://twitter.com/share?ref_src=https://tweet-task.web.app"
       ref: "https://twitter.com/share?ref_src="
     };
   },
@@ -74,14 +68,6 @@ export default {
         this.$store.state.totalTime +
         " 時間作業しました！%0a"
       );
-    },
-    handleData() {
-      let chart_data = [
-        { label: "仕事", value: this.$store.state.times.work_sum },
-        { label: "勉強", value: this.$store.state.times.study_sum },
-        { label: "課題", value: this.$store.state.times.task_sum }
-      ];
-      return chart_data;
     },
     averageTotalTime() {
       let average = this.$store.state.totalTime;
