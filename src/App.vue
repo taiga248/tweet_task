@@ -49,11 +49,6 @@ export default {
       }
     });
   },
-  data() {
-    return {
-      appIcon: require("@/assets/appIcon.png")
-    };
-  },
   methods: {
     ...mapActions([
       "toggleSideMenu",
