@@ -1,6 +1,6 @@
 <template>
   <div class="mx-5">
-    <h3 class="text-center my-5">Done card</h3>
+    <h3 class="text-center my-1">Done card</h3>
     <p v-if="works.length === 0" class="text-center grey--text mt-12 display-1">
       <br />作業を記録しよう！！
     </p>

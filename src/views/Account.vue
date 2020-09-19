@@ -2,13 +2,13 @@
   <v-container>
     <v-layout wrap row>
       <v-flex xs12 sm5>
-        <v-card class="mx-4 my-10 text-center" height="500">
+        <v-card class="mx-4 my-1 text-center" height="500">
           <v-responsive class="pt-4">
             <v-avatar size="150">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
           </v-responsive>
-          <v-card-text class="py-2">
+          <v-card-text class="pt-1">
             <p class="title">{{ userName }}</p>
             <v-list class="text-left">
               <v-list-item class="grey--text mx-2">
@@ -116,15 +116,15 @@ export default {
       tags: [
         {
           text: "仕事",
-          color: "primary"
+          color: "rgba(54, 162, 235, 1)" // 青
         },
         {
           text: "勉強",
-          color: "success"
+          color: "rgba(48, 209, 88, 1)" // 緑
         },
         {
           text: "課題",
-          color: "rgb(255, 69, 58)"
+          color: "rgba(255, 99, 132, 1)" // 赤
         }
       ]
     };

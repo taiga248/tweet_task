@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app color="white">
       <v-app-bar-nav-icon
         v-if="$store.state.login_user"
         @click="toggleSideMenu"
@@ -9,6 +9,7 @@
     </v-app-bar>
 
     <SideNav />
+    <BtmNav v-show="$vuetify.breakpoint.xs" />
 
     <v-content>
       <v-container fluid fill-height align-start>
@@ -20,14 +21,16 @@
 
 <script>
 import { mapActions } from "vuex";
-import SideNav from "./components/SideNav";
+import SideNav from "@/components/SideNav";
+import BtmNav from "@/components/BtmNav";
 import firebase from "firebase/app";
 import "firebase/auth";
 
 export default {
   name: "App",
   components: {
-    SideNav
+    SideNav,
+    BtmNav
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
@@ -46,7 +49,11 @@ export default {
       }
     });
   },
-
+  data() {
+    return {
+      appIcon: require("@/assets/appIcon.png")
+    };
+  },
   methods: {
     ...mapActions([
       "toggleSideMenu",

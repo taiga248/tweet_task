@@ -1,10 +1,12 @@
 <template>
   <div class="mx-5">
-    <h3 class="text-center my-5">Analytics</h3>
+    <h3 class="text-center my-1">Analytics</h3>
     <v-card class="mx-auto py-5">
-      <section>
-        <Chart class="my-1 px-3" />
-      </section>
+      <v-layout>
+        <v-flex xs12 md10 class="mx-auto">
+          <Chart class="my-1 px-3" />
+        </v-flex>
+      </v-layout>
 
       <v-card-text>
         <div class="title font-weight-light mb-2 ml-2">{{ userName }}</div>
@@ -15,9 +17,9 @@
         </v-list-item>
         <v-list-item>
           合計 :
-          <span class="font-weight-medium">
-            {{ this.$store.state.totalTime }}
-          </span>
+          <span class="font-weight-medium">{{
+            this.$store.state.totalTime
+          }}</span>
           時間
         </v-list-item>
         <v-list-item>
