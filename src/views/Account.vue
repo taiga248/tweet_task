@@ -83,8 +83,7 @@
                     v-for="(tag, i) in tags"
                     :key="i"
                   >
-                    <v-icon left>mdi-label</v-icon>
-                    <span>{{ tag.text }}</span>
+                    <span class="mx-4">{{ tag.text }}</span>
                   </v-chip>
                 </div>
               </v-list-item>
