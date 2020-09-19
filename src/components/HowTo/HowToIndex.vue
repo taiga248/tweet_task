@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-list>
+    <v-list class="my-0 py-0">
       <v-list-item v-for="(title, i) in titles" :key="i">
         <v-list-item-content>
           <v-list-item-title class="title">{{ title.title }}</v-list-item-title>
