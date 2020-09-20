@@ -1,6 +1,6 @@
 <template>
   <div class="mx-5">
-    <h3 class="text-center my-1">Analytics</h3>
+    <h3 class="text-center mt-1 mb-3">Analytics</h3>
     <v-card class="mx-auto py-5">
       <v-layout>
         <v-flex xs12 md10 class="mx-auto">

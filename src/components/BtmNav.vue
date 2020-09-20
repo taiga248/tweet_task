@@ -1,7 +1,6 @@
 <template>
-  <v-bottom-navigation class="pt-2" :value="activeBtn" fixed color="#000">
+  <v-bottom-navigation class="pt-2" :value="activeBtn" grow fixed color="#000">
     <v-btn v-for="(item, index) in items" :key="index" :to="item.link">
-      <span>{{ item.title }}</span>
       <v-icon>{{ item.icon }}</v-icon>
     </v-btn>
   </v-bottom-navigation>
