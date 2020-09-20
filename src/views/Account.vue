@@ -1,31 +1,31 @@
 <template>
   <v-container>
-    <v-layout wrap row>
-      <v-flex xs12 sm5>
-        <v-card class="mx-4 my-1 text-center" height="500">
+    <v-layout wrap row class="my-0 py-0">
+      <v-flex xs12 sm4 class="mx-auto">
+        <v-card class="mx-2 my-1 text-center">
           <v-responsive class="pt-4">
             <v-avatar size="150">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
           </v-responsive>
-          <v-card-text class="pt-1">
+          <v-card-text class="my-0 py-0">
             <p class="title">{{ userName }}</p>
             <v-list class="text-left">
               <v-list-item class="grey--text mx-2">
                 <v-icon left>mdi-pencil</v-icon>
-                <span class="grey--text">{{
-                  this.$store.state.profile.target
-                }}</span>
+                <span class="grey--text">
+                  {{ this.$store.state.profile.target }}
+                </span>
               </v-list-item>
               <v-list-item class="grey--text mx-2">
                 <v-icon left>mdi-calendar</v-icon>
-                <span class="grey--text">{{
-                  this.$store.state.profile.limit
-                }}</span>
+                <span class="grey--text">
+                  {{ this.$store.state.profile.limit }}
+                </span>
               </v-list-item>
               <v-list-item>
                 <v-spacer></v-spacer>
-                <v-card-actions>
+                <v-card-actions class="my-0 py-0">
                   <v-flex class="my-auto">
                     <div class="text-center">
                       <v-dialog v-model="formDrawer" width="500">
@@ -91,7 +91,7 @@
           </v-card-text>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm7>
+      <v-flex xs12 sm6>
         <AddTaskForm />
       </v-flex>
     </v-layout>

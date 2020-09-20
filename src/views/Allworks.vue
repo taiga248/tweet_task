@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-layout wrap row>
-      <v-flex xs12 sm6 md4>
+      <v-flex xs10 sm5 md3 class="mx-auto">
         <v-card class="text-center">
           <v-responsive class="pt-2">
-            <v-avatar size="150">
+            <v-avatar size="100">
               <v-img :src="photoURL" alt="avatar" />
             </v-avatar>
           </v-responsive>
@@ -12,18 +12,18 @@
             <div class="mx-auto">{{ userName }}</div>
           </v-card-title>
           <v-card-text>
-            <v-list class="text-left">
+            <v-list class="text-left my-0 py-0">
               <v-list-item class="grey--text">
                 <v-icon left>mdi-pencil</v-icon>
-                <span class="grey--text">
-                  {{ this.$store.state.profile.target }}
-                </span>
+                <span class="grey--text">{{
+                  this.$store.state.profile.target
+                }}</span>
               </v-list-item>
               <v-list-item class="grey--text">
                 <v-icon left>mdi-calendar</v-icon>
-                <span class="grey--text">
-                  {{ this.$store.state.profile.limit }}
-                </span>
+                <span class="grey--text">{{
+                  this.$store.state.profile.limit
+                }}</span>
               </v-list-item>
               <v-list-item>
                 <v-icon left>mdi-timer</v-icon>

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mx-4 my-1" height="500">
+  <v-card class="mx-2 my-1" height="500">
     <v-card-text>
       <h2 class="text-center my-3">今日やったこと</h2>
       <v-form class="mx-10 px-1 my-5">
@@ -18,7 +18,7 @@
 
         <div class="text-center mb-10">
           <v-btn @click="form_init">キャンセル</v-btn>
-          <v-btn color="info" class="ml-2" @click="save">記録</v-btn>
+          <v-btn color="info" class="ml-1" @click="save">記録</v-btn>
         </div>
       </v-form>
     </v-card-text>

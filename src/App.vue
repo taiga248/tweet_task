@@ -5,16 +5,16 @@
         v-if="$store.state.login_user"
         @click="toggleSideMenu"
       ></v-app-bar-nav-icon>
-      <v-toolbar-title>Knowder</v-toolbar-title>
+      <v-toolbar-title>{{ refActivePath() }}</v-toolbar-title>
     </v-app-bar>
 
     <SideNav />
-    <BtmNav v-show="$vuetify.breakpoint.xs" />
+    <BtmNav v-show="$vuetify.breakpoint.xs && $store.state.login_user" />
 
-    <v-content>
-      <v-container fluid fill-height align-start>
-        <router-view />
-      </v-container>
+    <v-content class="mb-10">
+      <!-- <v-container fluid fill-height align-start> -->
+      <router-view />
+      <!-- </v-container> -->
     </v-content>
   </v-app>
 </template>
@@ -49,7 +49,35 @@ export default {
       }
     });
   },
+  data() {
+    return {
+      activePath: [
+        "Knowder",
+        "アカウント",
+        "記録",
+        "みんなの記録",
+        "使い方",
+        "Not Found"
+      ]
+    };
+  },
   methods: {
+    refActivePath() {
+      switch (this.$route.path) {
+        case "/":
+          return this.activePath[0];
+        case "/Account":
+          return this.activePath[1];
+        case "/Recode":
+          return this.activePath[2];
+        case "/Allworks":
+          return this.activePath[3];
+        case "/Howto":
+          return this.activePath[4];
+        default:
+          return this.activePath[5];
+      }
+    },
     ...mapActions([
       "toggleSideMenu",
       "setLoginUser",
