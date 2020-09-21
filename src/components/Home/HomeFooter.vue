@@ -1,6 +1,7 @@
 <template>
-  <v-footer class="padless" width="100vw">
+  <v-footer padless width="100vw">
     <v-card flat tile width="100%" class="text-center">
+      <v-divider></v-divider>
       <v-card-text>
         <v-btn
           class="mx-4"

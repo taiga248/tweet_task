@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout wrap>
+    <v-layout row wrap class="mx-4 mb-10">
       <v-flex xs12 sm12 md3>
         <HowToMenu :titles="titles" />
       </v-flex>

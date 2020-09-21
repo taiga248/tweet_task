@@ -1,8 +1,8 @@
 <template>
-  <v-card class="mx-2 my-1" height="500">
+  <v-card>
     <v-card-text>
       <h2 class="text-center my-3">今日やったこと</h2>
-      <v-form class="mx-10 px-1 my-5">
+      <v-form class="mx-5 px-1 my-5">
         <v-select :items="tags" v-model="tagChecked" label="タグ"></v-select>
         <p class="text-center">
           何時間作業した？

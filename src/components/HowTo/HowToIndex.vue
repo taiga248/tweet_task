@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-list class="my-0 py-0">
+  <v-content>
+    <v-list>
       <v-list-item v-for="(title, i) in titles" :key="i">
         <v-list-item-content>
           <v-list-item-title class="title">{{ title.title }}</v-list-item-title>
@@ -8,7 +8,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-  </v-container>
+  </v-content>
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-layout wrap row class="mx-4 mb-10">
       <v-flex xs12 sm6>
         <Analytics />
       </v-flex>
@@ -16,7 +16,6 @@ import Analytics from "@/components/Recode/Analytics";
 import Done from "@/components/Recode/Done";
 
 export default {
-  name: "Recode",
   components: {
     Analytics,
     Done

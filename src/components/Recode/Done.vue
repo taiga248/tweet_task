@@ -1,6 +1,5 @@
 <template>
-  <div class="mx-5">
-    <h3 class="text-center mt-1 mb-3">Done card</h3>
+  <div>
     <p v-if="works.length === 0" class="text-center grey--text mt-12 display-1">
       <br />作業を記録しよう！！
     </p>

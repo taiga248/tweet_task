@@ -11,10 +11,10 @@
     <SideNav />
     <BtmNav v-show="$vuetify.breakpoint.xs && $store.state.login_user" />
 
-    <v-content class="mb-10">
-      <!-- <v-container fluid fill-height align-start> -->
-      <router-view />
-      <!-- </v-container> -->
+    <v-content>
+      <v-container fluid fill-height align-start>
+        <router-view />
+      </v-container>
     </v-content>
   </v-app>
 </template>
