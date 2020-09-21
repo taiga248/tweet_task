@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <v-content>
     <HomeHero />
     <HomeMain />
     <HomeFooter />
-  </div>
+  </v-content>
 </template>
 
 <script>

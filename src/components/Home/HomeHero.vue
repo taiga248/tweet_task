@@ -4,7 +4,7 @@
       <v-img lazy-src contain max-height="400" :src="hero_img"></v-img>
     </v-flex>
     <v-flex xs12 sm6>
-      <div class="py-3  text-center">
+      <div class="text-center">
         <h1 class="title">あなたの学びを記録しよう</h1>
         <v-btn @click="login" color="primary ">
           <v-icon>mdi-in</v-icon>
