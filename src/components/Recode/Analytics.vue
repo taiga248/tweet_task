@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <v-card class="mx-auto py-5">
+  <section>
+    <v-card class="py-5">
       <v-layout>
         <v-flex xs12 md10 class="mx-auto">
           <Chart class="my-1 px-3" />
@@ -41,7 +41,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-  </div>
+  </section>
 </template>
 
 <script>

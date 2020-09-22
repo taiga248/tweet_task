@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-layout wrap row class="mx-4 mb-10">
-      <v-flex xs12 sm6>
+      <v-flex xs12 sm5 class="mx-auto">
         <Analytics />
       </v-flex>
-      <v-flex xs12 sm6>
+      <v-flex xs12 sm5 class="mx-auto">
         <Done />
       </v-flex>
     </v-layout>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="white">
+    <v-app-bar app dense color="white">
       <v-app-bar-nav-icon
         v-if="$store.state.login_user"
         @click="toggleSideMenu"

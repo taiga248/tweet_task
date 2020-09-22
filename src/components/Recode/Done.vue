@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <section>
     <p v-if="works.length === 0" class="text-center grey--text mt-12 display-1">
       <br />作業を記録しよう！！
     </p>
-    <v-card class="px-1 my-2" v-for="(work, i) in works" :key="i">
+    <v-card class="px-1 my-1" v-for="(work, i) in works" :key="i">
       <v-layout wrap class="pa-3">
         <v-flex xs6 class="my-2">
           <v-icon left :color="tag_color(work.tag)">mdi-label</v-icon>
@@ -19,7 +19,7 @@
         </v-flex>
       </v-layout>
     </v-card>
-  </div>
+  </section>
 </template>
 
 <script>

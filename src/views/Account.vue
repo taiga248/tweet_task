@@ -4,7 +4,7 @@
       <v-flex xs12 sm4 class="mx-auto">
         <Profile />
       </v-flex>
-      <v-flex xs12 sm6>
+      <v-flex xs12 sm6 class="mx-auto">
         <AddTaskForm />
       </v-flex>
     </v-layout>

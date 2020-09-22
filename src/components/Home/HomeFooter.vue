@@ -1,5 +1,5 @@
 <template>
-  <v-footer padless width="100vw">
+  <v-footer padless>
     <v-card flat tile width="100%" class="text-center">
       <v-divider></v-divider>
       <v-card-text>

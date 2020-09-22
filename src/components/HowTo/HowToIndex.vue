@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <section>
     <v-list>
       <v-list-item v-for="(title, i) in titles" :key="i">
         <v-list-item-content>
@@ -8,7 +8,7 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-  </v-content>
+  </section>
 </template>
 
 <script>

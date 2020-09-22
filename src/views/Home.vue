@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-content class="pa-0">
     <HomeHero />
     <HomeMain />
     <HomeFooter />
