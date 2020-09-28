@@ -12,15 +12,11 @@
       <v-list class="text-left my-0 py-0">
         <v-list-item class="grey--text">
           <v-icon left>mdi-pencil</v-icon>
-          <span class="grey--text">
-            {{ this.$store.state.profile.target }}
-          </span>
+          <span class="grey--text">{{ this.$store.state.profile.target }}</span>
         </v-list-item>
         <v-list-item class="grey--text">
           <v-icon left>mdi-calendar</v-icon>
-          <span class="grey--text">
-            {{ this.$store.state.profile.limit }}
-          </span>
+          <span class="grey--text">{{ this.$store.state.profile.limit }}</span>
         </v-list-item>
         <v-list-item>
           <v-icon left>mdi-timer</v-icon>
@@ -54,21 +50,7 @@ export default {
   data() {
     return {
       times: {},
-      tags: [
-        {
-          text: "仕事",
-          color: "rgba(54, 162, 235, 1)"
-        },
-        {
-          text: "勉強",
-          color: "rgba(48, 209, 88, 1)"
-        },
-        {
-          text: "課題",
-
-          color: "rgba(255, 99, 132, 1)"
-        }
-      ]
+      tags: this.$store.state.tags
     };
   },
   created() {

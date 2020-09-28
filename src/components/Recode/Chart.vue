@@ -1,35 +1,47 @@
 <script>
-import { mapActions } from "vuex";
 import { Bar } from "vue-chartjs";
 // 記録画面で更新をすると、グラフのデータが反映されない
 // DBのデータと常につないでおく処理を書く
+
+let w_time;
+let t_time;
+let s_time;
+
+
 export default {
   extends: Bar,
   name: "chart",
-  // created() {
-  //   this.fetchTime();
-  // },
+  created() {
+    w_time = this.$store.state.times.work_sum;
+    t_time = this.$store.state.times.task_sum;
+    s_time = this.$store.state.times.study_sum;
+  },
   data() {
     return {
       data: {
-        labels: ["仕事", "課題", "勉強"],
+        labels: [
+          this.$store.state.tags[0].name,
+          this.$store.state.tags[1].name,
+          this.$store.state.tags[2].name
+        ],
         datasets: [
           {
             label: ["Total"],
             data: [
-              this.$store.state.times.work_sum,
-              this.$store.state.times.study_sum,
-              this.$store.state.times.task_sum
+              // 更新したときに仕事と課題が0になるここら辺が怪しい
+              w_time,
+              t_time,
+              s_time
             ],
             backgroundColor: [
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(48, 209, 88, 0.2)",
-              "rgba(255, 99, 132, 0.2)"
+              this.$store.state.tags[0].bg_color,
+              this.$store.state.tags[1].bg_color,
+              this.$store.state.tags[2].bg_color
             ],
             borderColor: [
-              "rgba(54, 162, 235, 1)",
-              "rgba(48, 209, 88, 1)",
-              "rgba(255, 99, 132, 1)"
+              this.$store.state.tags[0].color,
+              this.$store.state.tags[1].color,
+              this.$store.state.tags[2].color
             ],
             borderWidth: 1
           }
@@ -51,10 +63,6 @@ export default {
   },
   mounted() {
     this.renderChart(this.data, this.options);
-    // this.fetchTime();
-  },
-  methods: {
-    ...mapActions(["fetchTime"])
   }
 };
 </script>

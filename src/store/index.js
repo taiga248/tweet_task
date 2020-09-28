@@ -11,11 +11,28 @@ export default new Vuex.Store({
     login_user: null,
     drawer: false,
     works: [],
+    tags: [
+      {
+        name: "仕事",
+        color: "rgba(54, 162, 235, 1)", // 青
+        bg_color: "rgba(54, 162, 235, 0.2)"
+      },
+      {
+        name: "課題",
+        color: "rgba(48, 209, 88, 1)", // 緑
+        bg_color: "rgba(48, 209, 88, 0.2)"
+      },
+      {
+        name: "勉強",
+        color: "rgba(255, 99, 132, 1)", // 赤
+        bg_color: "rgba(255, 99, 132, 0.2)"
+      }
+    ],
     totalTime: 0,
     times: {
       work_sum: 0,
-      study_sum: 0,
-      task_sum: 0
+      task_sum: 0,
+      study_sum: 0
     },
     profile: {
       target: "",
@@ -29,8 +46,6 @@ export default new Vuex.Store({
     },
     fetchLoginUsers(state, users) {
       state.AllUsers.push(users);
-      console.log("State : ");
-      console.dir(users);
     },
     deleteLoginUser(state) {
       state.login_user = null;
@@ -46,8 +61,8 @@ export default new Vuex.Store({
       state.totalTime += times.sum;
       state.times = {
         work_sum: (state.times.work_sum += times.work_sum),
-        study_sum: (state.times.study_sum += times.study_sum),
-        task_sum: (state.times.task_sum += times.task_sum)
+        task_sum: (state.times.task_sum += times.task_sum),
+        study_sum: (state.times.study_sum += times.study_sum)
       };
     },
     setProfile(state, profile) {
@@ -66,7 +81,6 @@ export default new Vuex.Store({
       commit("setLoginUser", user);
     },
     fetchLoginUsers({ commit }) {
-      console.log("Fetch Users");
       firebase
         .firestore()
         .collection(`users`)
@@ -76,7 +90,6 @@ export default new Vuex.Store({
         .get()
         .then(doc => {
           commit("fetchLoginUsers", doc.data());
-          console.log(doc.data());
         })
         .catch(err => {
           console.log(err);
@@ -170,19 +183,13 @@ export default new Vuex.Store({
                 .collection(`users/${getters.uid}/totalTime`)
                 .doc("time")
                 .set(times);
-              // ALLWORKS firebase.firestore().collection(`AllUsers/${getters.uid}/works`).doc("sum").add(times)
-              // firebase
-              //   .firestore()
-              //   .collection(`AllUsers/${getters.uid}/works`)
-              //   .doc("sum")
-              //   .set(times);
             } else {
               const existingTotalTime = doc.data().sum;
               times = {
                 sum: existingTotalTime + times.sum,
                 work_sum: times.work_sum,
-                study_sum: times.study_sum,
-                task_sum: times.task_sum
+                task_sum: times.task_sum,
+                study_sum: times.study_sum
               };
               this.state.totalTime = 0;
               firebase
@@ -190,12 +197,6 @@ export default new Vuex.Store({
                 .collection(`users/${getters.uid}/totalTime`)
                 .doc("time")
                 .set(times);
-              // ALLWORKS firebase.firestore().collection(`AllUsers/${getters.uid}/works`).doc("sum").add(times)
-              // firebase
-              //   .firestore()
-              //   .collection(`AllUsers/${getters.uid}/works`)
-              //   .doc("test")
-              //   .set(times);
             }
           });
       }
@@ -213,8 +214,8 @@ export default new Vuex.Store({
                 const times = {
                   sum: 0,
                   work_sum: 0,
-                  study_sum: 0,
-                  task_sum: 0
+                  task_sum: 0,
+                  study_sum: 0
                 };
                 commit("addTime", times);
               } else {
