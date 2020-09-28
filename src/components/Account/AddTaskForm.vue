@@ -9,12 +9,7 @@
           <span class="title">- {{ select_time }}h -</span>
         </p>
         <v-slider v-model.number="select_time" max="12"></v-slider>
-        <v-textarea
-          outlined
-          v-model="text"
-          :rules="textRules"
-          label="内容"
-        ></v-textarea>
+        <v-textarea outlined v-model="text" :rules="textRules" label="内容"></v-textarea>
 
         <div class="text-center mb-10">
           <v-btn @click="form_init">キャンセル</v-btn>
@@ -27,11 +22,15 @@
 
 <script>
 import { mapActions } from "vuex";
-
+// ゆくゆくはこのコンポーネントなくすかも
 export default {
   data() {
     return {
-      tags: ["仕事", "勉強", "課題"],
+      tags: [
+        this.$store.state.tags[0].name,
+        this.$store.state.tags[1].name,
+        this.$store.state.tags[2].name
+      ],
       tagChecked: "",
       select_time: 4,
       work_time: 0,
@@ -49,8 +48,6 @@ export default {
   },
   methods: {
     save() {
-      // 何もなかったら弾こうね あとで
-      // if(!text) return
       const work_data = {
         tag: this.tagChecked,
         time: this.select_time,
@@ -81,9 +78,6 @@ export default {
       }
       this.addWork(work_data);
       this.addTime(times);
-      console.log("Times : ");
-      console.log(times);
-
       this.$router.push({ name: "Recode" });
     },
     form_init() {

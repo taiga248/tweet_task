@@ -74,7 +74,7 @@ export default {
       let average = this.$store.state.totalTime;
       const point = 1;
       average =
-        Math.floor((average / 7) * Math.pow(10, point)) / Math.pow(10, point);
+        Math.floor((average / 3) * Math.pow(10, point)) / Math.pow(10, point);
       return average;
     },
     ...mapGetters(["userName"])

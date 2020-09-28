@@ -74,7 +74,7 @@
               v-for="(tag, i) in tags"
               :key="i"
             >
-              <span class="mx-4">{{ tag.text }}</span>
+              <span class="mx-4">{{ tag.name }}</span>
             </v-chip>
           </div>
         </v-list-item>
@@ -94,20 +94,7 @@ export default {
         target: "",
         limit: ""
       },
-      tags: [
-        {
-          text: "仕事",
-          color: "rgba(54, 162, 235, 1)" // 青
-        },
-        {
-          text: "勉強",
-          color: "rgba(48, 209, 88, 1)" // 緑
-        },
-        {
-          text: "課題",
-          color: "rgba(255, 99, 132, 1)" // 赤
-        }
-      ]
+      tags: this.$store.state.tags
     };
   },
   methods: {

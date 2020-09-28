@@ -1,8 +1,8 @@
 <template>
   <section>
-    <p v-if="works.length === 0" class="text-center grey--text mt-12 display-1">
-      <br />作業を記録しよう！！
-    </p>
+    <h2 v-if="works.length === 0" class="text-center grey--text mt-15">
+      <br />ここに記録が追加されます
+    </h2>
     <v-card class="px-1 my-1" v-for="(work, i) in works" :key="i">
       <v-layout wrap class="pa-3">
         <v-flex xs6 class="my-2">
@@ -26,7 +26,8 @@
 export default {
   data() {
     return {
-      works: []
+      works: [],
+      tags: this.$store.state.tags
     };
   },
   created() {
@@ -36,11 +37,11 @@ export default {
     tag_color(tag) {
       switch (tag) {
         case "仕事":
-          return "primary";
-        case "勉強":
-          return "success";
+          return "rgba(54, 162, 235, 1)";
         case "課題":
-          return "rgb(255, 69, 58)";
+          return "rgba(48, 209, 88, 1)";
+        case "勉強":
+          return "rgba(255, 99, 132, 1)";
         default:
           return;
       }
