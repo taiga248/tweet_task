@@ -9,7 +9,12 @@
           <span class="title">- {{ select_time }}h -</span>
         </p>
         <v-slider v-model.number="select_time" max="12"></v-slider>
-        <v-textarea outlined v-model="text" :rules="textRules" label="内容"></v-textarea>
+        <v-textarea
+          outlined
+          v-model="text"
+          :rules="textRules"
+          label="内容"
+        ></v-textarea>
 
         <div class="text-center mb-10">
           <v-btn @click="form_init">キャンセル</v-btn>
@@ -43,8 +48,8 @@ export default {
   },
   created() {
     this.work_time = this.$store.state.times.work_sum;
-    this.study_time = this.$store.state.times.study_sum;
     this.task_time = this.$store.state.times.task_sum;
+    this.study_time = this.$store.state.times.study_sum;
   },
   methods: {
     save() {
@@ -57,8 +62,8 @@ export default {
       let times = {
         sum: work_data.time,
         work_sum: this.work_time,
-        study_sum: this.study_time,
-        task_sum: this.task_time
+        task_sum: this.task_time,
+        study_sum: this.study_time
       };
       switch (work_data.tag) {
         case "仕事":
