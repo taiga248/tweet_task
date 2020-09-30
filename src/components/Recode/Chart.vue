@@ -7,7 +7,6 @@ let w_time;
 let t_time;
 let s_time;
 
-
 export default {
   extends: Bar,
   name: "chart",

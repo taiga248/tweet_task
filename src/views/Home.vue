@@ -1,8 +1,11 @@
 <template>
   <v-content class="pa-0">
-    <HomeHero />
-    <HomeMain />
-    <HomeFooter />
+    <section v-if="!this.$store.state.login_user">
+      <HomeHero />
+      <HomeMain />
+      <HomeFooter />
+    </section>
+    <section v-else class="text-center"></section>
   </v-content>
 </template>
 
@@ -19,3 +22,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.v-progress-circular {
+  margin: 1rem;
+}
+</style>
