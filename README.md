@@ -1,20 +1,22 @@
 # Tweet Task
+<img src="https://img.shields.io/badge/PWA-brightgreen"> <img src="https://img.shields.io/badge/Vue-green"> <img src="https://img.shields.io/badge/Vuetify-blue"> <img src="https://img.shields.io/badge/Firebase-darkblue">
+
 [here](https://tweet-task.web.app/)
 (名前　Knowderと迷ってる)
 
-「今日何をしたか」といった作業記録を残し、頑張ったという事実を視覚的に体験するアプリ
+作業記録を残し、頑張ったという事実を視覚で体験する
 
 ## 機能
 ### Google認証
-その他SNSでのログイン機能は、その他機能が完成してから追加していきます。
+その他SNSでのログイン機能はあとで追加
 
 ### 作業種類別に作業内容を記録
-- 勉強
 - 仕事
 - 課題
+- 勉強
 
-の３つのタグが用意されており、書き込んだ内容にタグをつけることができます。
-書き込むとそれぞれのタグに対応した棒グラフにデータが蓄積されます(未実装)
+の３つのタグが用意されており、記録の際にタグをつけることができます。
+それぞれのタグに対応した棒グラフにデータが蓄積されます
 
 ### Tweet機能
 「今週は〇〇時間頑張った」という記録をTwitterで共有できます。 
