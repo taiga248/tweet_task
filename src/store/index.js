@@ -60,9 +60,9 @@ export default new Vuex.Store({
     addTime(state, times) {
       state.totalTime += times.sum;
       state.times = {
-        work_sum: (state.times.work_sum += times.work_sum),
-        task_sum: (state.times.task_sum += times.task_sum),
-        study_sum: (state.times.study_sum += times.study_sum)
+        work_sum: times.work_sum,
+        task_sum: times.task_sum,
+        study_sum: times.study_sum
       };
     },
     setProfile(state, profile) {
@@ -185,12 +185,16 @@ export default new Vuex.Store({
                 .set(times);
             } else {
               const existingTotalTime = doc.data().sum;
+              const existingWorkTime = doc.data().work_sum;
+              const existingTaskTime = doc.data().task_sum;
+              const existingStudyTime = doc.data().study_sum;
               times = {
                 sum: existingTotalTime + times.sum,
-                work_sum: times.work_sum,
-                task_sum: times.task_sum,
-                study_sum: times.study_sum
+                work_sum: existingWorkTime + times.work_sum,
+                task_sum: existingTaskTime + times.task_sum,
+                study_sum: existingStudyTime + times.study_sum
               };
+              // actionsでstateいじってるけどいったん許して (> - <)
               this.state.totalTime = 0;
               firebase
                 .firestore()
