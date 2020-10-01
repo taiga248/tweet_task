@@ -3,7 +3,7 @@
     <v-card class="py-5">
       <v-layout>
         <v-flex xs12 md10 class="mx-auto">
-          <Chart class="my-1 px-3" />
+          <Chart class="my-1 px-3" :chartData="chartData" :options="options" />
         </v-flex>
       </v-layout>
 
@@ -16,9 +16,9 @@
         </v-list-item>
         <v-list-item>
           合計 :
-          <span class="font-weight-medium">{{
-            this.$store.state.totalTime
-          }}</span>
+          <span class="font-weight-medium">
+            {{ this.$store.state.totalTime }}
+          </span>
           時間
         </v-list-item>
         <v-list-item>
@@ -58,7 +58,47 @@ export default {
   data() {
     return {
       works: [],
-      ref: "https://twitter.com/share?ref_src="
+      ref: "https://twitter.com/share?ref_src=",
+      chartData: {
+        labels: [
+          this.$store.state.tags[0].name,
+          this.$store.state.tags[1].name,
+          this.$store.state.tags[2].name
+        ],
+        datasets: [
+          {
+            label: ["Total"],
+            data: [
+              this.$store.state.times.work_sum,
+              this.$store.state.times.task_sum,
+              this.$store.state.times.study_sum
+            ],
+            backgroundColor: [
+              this.$store.state.tags[0].bg_color,
+              this.$store.state.tags[1].bg_color,
+              this.$store.state.tags[2].bg_color
+            ],
+            borderColor: [
+              this.$store.state.tags[0].color,
+              this.$store.state.tags[1].color,
+              this.$store.state.tags[2].color
+            ],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                stepSize: 5
+              }
+            }
+          ]
+        }
+      }
     };
   },
   computed: {
