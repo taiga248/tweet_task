@@ -5,7 +5,6 @@
       <HomeMain />
       <HomeFooter />
     </section>
-    <section v-else class="text-center"></section>
   </v-content>
 </template>
 
@@ -22,9 +21,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.v-progress-circular {
-  margin: 1rem;
-}
-</style>
