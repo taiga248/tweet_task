@@ -5,26 +5,30 @@
     v-model="$store.state.drawer"
     temporary
   >
-    <v-list>
-      <v-list-item>
-        <v-list-item-avatar>
-          <img v-if="photoURL" :src="photoURL" />
-        </v-list-item-avatar>
-        <v-list-item-content>
-          <v-list-item-title>{{ userName }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+    <v-list shaped>
+      <v-list-item-group color="primary">
+        <v-list-item>
+          <v-list-item-avatar>
+            <img v-if="photoURL" :src="photoURL" />
+          </v-list-item-avatar>
+          <v-list-item-content>
+            <v-list-item-title>{{ userName }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
-      <v-divider></v-divider>
+        <v-divider></v-divider>
 
-      <v-list-item v-for="(item, index) in items" :key="index" :to="item.link">
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+        <div v-for="(item, i) in items" :key="i">
+          <v-list-item v-if="i !== 2" :to="item.link">
+            <v-list-item-icon>
+              <v-icon v-text="item.icon"></v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </div>
+      </v-list-item-group>
     </v-list>
 
     <v-bottom-navigation absolute horizontal height="70">
@@ -43,28 +47,7 @@ export default {
   name: "SideNav",
   data() {
     return {
-      items: [
-        {
-          title: "アカウント",
-          icon: "mdi-account-circle-outline",
-          link: { name: "Account" }
-        },
-        {
-          title: "記録",
-          icon: "mdi-bulletin-board",
-          link: { name: "Recode" }
-        },
-        {
-          title: "みんなの記録",
-          icon: "mdi-content-save-all",
-          link: { name: "Allworks" }
-        },
-        {
-          title: "使い方",
-          icon: "mdi-mouse-variant",
-          link: { name: "Howto" }
-        }
-      ]
+      items: this.$store.state.pageItem
     };
   },
   methods: {

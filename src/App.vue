@@ -57,11 +57,10 @@ export default {
       loading: true,
       activePath: [
         "Knowder",
-        "アカウント",
-        "記録",
-        "みんなの記録",
-        "使い方",
-        "Not Found"
+        this.$store.state.pageItem[0].title, // アカウント
+        this.$store.state.pageItem[1].title, // 記録
+        this.$store.state.pageItem[3].title, // みんなの記録
+        this.$store.state.pageItem[4].title // このアプリについて
       ]
     };
   },
@@ -79,7 +78,7 @@ export default {
         case "/Howto":
           return this.activePath[4];
         default:
-          return this.activePath[5];
+          return this.activePath[0];
       }
     },
     ...mapActions([
