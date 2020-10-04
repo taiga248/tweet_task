@@ -1,4 +1,30 @@
 const login_user = null;
+const pageItem = [
+  {
+    title: "アカウント",
+    icon: "mdi-account-circle-outline",
+    link: { name: "Account" }
+  },
+  {
+    title: "記録",
+    icon: "mdi-bulletin-board",
+    link: { name: "Recode" }
+  },
+  {
+    title: "追加",
+    icon: "mdi-plus"
+  },
+  {
+    title: "みんなの記録",
+    icon: "mdi-content-save-all",
+    link: { name: "Allworks" }
+  },
+  {
+    title: "このアプリについて",
+    icon: "mdi-cog",
+    link: { name: "Howto" }
+  }
+];
 const drawer = false;
 const works = [];
 const tags = [
@@ -32,6 +58,7 @@ const AllUsers = [];
 
 export default {
   login_user,
+  pageItem,
   drawer,
   works,
   tags,

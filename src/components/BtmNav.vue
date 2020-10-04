@@ -57,32 +57,7 @@ export default {
       text: "",
       now: new Date(),
       activeBtn: 1,
-      items: [
-        {
-          title: "アカウント",
-          icon: "mdi-account-circle-outline",
-          link: { name: "Account" }
-        },
-        {
-          title: "記録",
-          icon: "mdi-bulletin-board",
-          link: { name: "Recode" }
-        },
-        {
-          title: "追加",
-          icon: "mdi-plus"
-        },
-        {
-          title: "みんなの記録",
-          icon: "mdi-content-save-all",
-          link: { name: "Allworks" }
-        },
-        {
-          title: "使い方",
-          icon: "mdi-mouse-variant",
-          link: { name: "Howto" }
-        }
-      ]
+      items: this.$store.state.pageItem
     };
   },
   created() {
