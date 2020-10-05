@@ -1,32 +1,37 @@
 <template>
-  <v-layout wrap row>
-    <v-flex xs12 sm6>
-      <v-img lazy-src contain max-height="400" :src="hero_img"></v-img>
-    </v-flex>
-    <v-flex xs12 sm4 class="align-self-center mx-auto">
-      <v-card class="py-2 mx-auto" max-width="80%" min-width>
-        <div class="text-center">
-          <h1 class="title">あなたの時間を記録しよう</h1>
-          <v-btn @click="login" class="my-2" color="primary">
-            <span>記録する</span>
-          </v-btn>
-        </div>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <v-container>
+    <v-layout wrap>
+      <v-flex xs12 sm12 md5>
+        <v-img lazy-src contain max-height="400" :src="hero_img"></v-img>
+      </v-flex>
+      <v-flex xs12 sm6 md7 class="align-self-center mx-auto">
+        <v-flex xs12 md7 class="mx-auto">
+          <h2 class="title">Knowder</h2>
+          <p>
+            このアプリはあなたの作業記録をサポートします。
+            <br />あなた以外のユーザーの作業時間なども見ることができるので、
+            あなたのモチベーションをも助けます。
+          </p>
+        </v-flex>
+        <v-flex xs12 md5 class="mx-auto">
+          <CTA />
+        </v-flex>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import CTA from "@/components/Home/CallToAction/CTA";
 
 export default {
+  components: {
+    CTA
+  },
   data() {
     return {
-      hero_img: require("@/assets/hero_img.svg")
+      hero_img: require("@/assets/home/hero_img.svg")
     };
-  },
-  methods: {
-    ...mapActions(["login"])
   }
 };
 </script>
