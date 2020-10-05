@@ -2,8 +2,7 @@
   <div v-show="loading">
     <div class="load">
       <vue-loading
-        class="load__item"
-        type="bars"
+        type="bubbles"
         color="rgb(10,132,255)"
         :size="{ width: '100px', height: '100px' }"
       ></vue-loading>
@@ -33,9 +32,5 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-.load__item {
-  /* ちょっと左にずれるのどうにかしたい */
-  margin: 0 0 0 5vw;
 }
 </style>
