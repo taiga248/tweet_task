@@ -1,5 +1,5 @@
 <template>
-  <div v-show="loading">
+  <div v-if="loading">
     <div class="load">
       <vue-loading
         type="bubbles"
