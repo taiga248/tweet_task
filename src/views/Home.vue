@@ -1,6 +1,6 @@
 <template>
   <v-content class="pa-0">
-    <section v-if="!this.$store.state.login_user">
+    <section>
       <HomeHero />
       <HomeMain />
       <HomeFooter />

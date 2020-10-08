@@ -20,19 +20,19 @@ export default {
       imgs: [
         {
           text: "AAA",
-          path: require("@/assets/home/Home.png")
+          path: require("@/assets/home/Home-min.png")
         },
         {
           text: "BBB",
-          path: require("@/assets/home/Home.png")
+          path: require("@/assets/home/Home-min.png")
         },
         {
           text: "CCC",
-          path: require("@/assets/home/Home.png")
+          path: require("@/assets/home/Home-min.png")
         },
         {
           text: "DDD",
-          path: require("@/assets/home/Home.png")
+          path: require("@/assets/home/Home-min.png")
         }
       ]
     };

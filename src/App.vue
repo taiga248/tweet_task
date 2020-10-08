@@ -1,10 +1,14 @@
 <template>
   <v-app>
-    <!-- <Loading v-if="loading" :loading="loading"></Loading> -->
-    <!-- <section v-if="!loading"> -->
+    <section v-if="loading">
+      <Loading :loading="loading"></Loading>
+    </section>
     <section>
       <v-app-bar app dense color="white">
-        <v-app-bar-nav-icon v-if="this.$store.state.login_user" @click="toggleSideMenu"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon
+          v-if="this.$store.state.login_user"
+          @click="toggleSideMenu"
+        ></v-app-bar-nav-icon>
         <v-toolbar-title>{{ refActivePath() }}</v-toolbar-title>
       </v-app-bar>
       <SideNav />
@@ -12,7 +16,9 @@
 
       <v-content>
         <v-container fluid fill-height align-start>
-          <router-view />
+          <keep-alive>
+            <router-view />
+          </keep-alive>
         </v-container>
       </v-content>
     </section>
@@ -22,7 +28,7 @@
 <script>
 import { mapActions } from "vuex";
 import SideNav from "@/components/SideNav";
-// import Loading from "@/components/Loading";
+import Loading from "@/components/Loading";
 import BtmNav from "@/components/BtmNav";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -31,8 +37,8 @@ export default {
   name: "App",
   components: {
     SideNav,
-    BtmNav
-    // Loading
+    BtmNav,
+    Loading
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
@@ -89,7 +95,9 @@ export default {
     ])
   },
   beforeUpdate() {
+    console.log("LOAD : " + this.loading);
     this.loading = false;
+    console.log("LOADED : " + this.loading);
   }
 };
 </script>
