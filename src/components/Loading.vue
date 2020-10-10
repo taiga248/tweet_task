@@ -1,5 +1,5 @@
 <template>
-  <div v-if="loading">
+  <div v-show="loading">
     <div class="load">
       <vue-loading
         type="bubbles"
@@ -14,7 +14,6 @@
 import { VueLoading } from "vue-loading-template";
 
 export default {
-  name: "loading",
   props: {
     loading: {
       type: Boolean

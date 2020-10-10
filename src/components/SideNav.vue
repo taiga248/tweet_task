@@ -31,7 +31,7 @@
       </v-list-item-group>
     </v-list>
 
-    <v-bottom-navigation absolute horizontal height="70">
+    <v-bottom-navigation absolute horizontal height="100">
       <v-btn text class="mt-1" v-if="$store.state.login_user">
         <v-icon>mdi-exit-to-app</v-icon>
         <span @click="logout">ログアウト</span>
