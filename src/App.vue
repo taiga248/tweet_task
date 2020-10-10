@@ -1,9 +1,9 @@
 <template>
   <v-app>
-    <section v-if="loading">
+    <section v-show="loading">
       <Loading :loading="loading"></Loading>
     </section>
-    <section>
+    <section v-show="!loading">
       <v-app-bar app dense color="white">
         <v-app-bar-nav-icon
           v-if="this.$store.state.login_user"
@@ -12,7 +12,7 @@
         <v-toolbar-title>{{ refActivePath() }}</v-toolbar-title>
       </v-app-bar>
       <SideNav />
-      <BtmNav v-show="$vuetify.breakpoint.xs && $store.state.login_user" />
+      <BtmNav v-if="$vuetify.breakpoint.xs && $store.state.login_user" />
 
       <v-content>
         <v-container fluid fill-height align-start>
@@ -69,9 +69,14 @@ export default {
     };
   },
   methods: {
+    toggleLoading() {
+      this.loading = false;
+    },
     refActivePath() {
       switch (this.$route.path) {
         case "/":
+          // Homeの時だけ Loading が beforeUpdate外なので
+          this.loading = false;
           return this.activePath[0];
         case "/Account":
           return this.activePath[1];
@@ -95,9 +100,7 @@ export default {
     ])
   },
   beforeUpdate() {
-    console.log("LOAD : " + this.loading);
-    this.loading = false;
-    console.log("LOADED : " + this.loading);
+    this.toggleLoading();
   }
 };
 </script>

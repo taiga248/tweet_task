@@ -17,8 +17,8 @@
           </v-btn>
         </v-card-text>
         <v-card-text>
-          <v-icon left>mdi-gmail</v-icon>
-          <span v-text="gmail"></span>
+          <v-icon left v-text="gmail.icon"></v-icon>
+          <span v-text="gmail.address"></span>
         </v-card-text>
         <v-divider></v-divider>
 
@@ -40,7 +40,7 @@ export default {
   },
   data() {
     return {
-      gmail: "taiga248@gmail.com",
+      gmail: { icon: "mdi-gmail", address: "taiga248@gmail.com" },
       icons: [
         {
           icon: "mdi-twitter",
