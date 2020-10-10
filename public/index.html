@@ -12,12 +12,12 @@
       crossorigin="anonymous"
     ></script>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Knowder" />
-    <!-- <meta name="twitter:description" content="タイトルの下に出てくる文章" /> -->
+    <meta name="twitter:creator" content="@En_358" />
     <meta
       name="twitter:image"
-      content="https://raw.githubusercontent.com/taiga248/TwitterCard/master/img/knowder.png"
+      content="https://github.com/taiga248/tweet_task/blob/master/public/appIcon.png"
     />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link
@@ -31,13 +31,8 @@
   </head>
   <body>
     <noscript>
-      <strong
-        >We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work
-        properly without JavaScript enabled. Please enable it to
-        continue.</strong
-      >
+      <strong>JavaScriptを有効化してください。</strong>
     </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
