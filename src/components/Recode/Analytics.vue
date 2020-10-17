@@ -16,9 +16,9 @@
         </v-list-item>
         <v-list-item>
           合計 :
-          <span class="font-weight-medium">
-            {{ this.$store.state.totalTime }}
-          </span>
+          <span class="font-weight-medium">{{
+            this.$store.state.totalTime
+          }}</span>
           時間
         </v-list-item>
         <v-list-item>
@@ -107,7 +107,7 @@ export default {
         this.ref +
         "&text=今週は、合計 " +
         this.$store.state.totalTime +
-        " 時間作業しました！%0a https://knowder.page.link/ogp"
+        " 時間作業しました！%0a"
       );
     },
 
