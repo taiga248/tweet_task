@@ -16,9 +16,9 @@
         </v-list-item>
         <v-list-item>
           合計 :
-          <span class="font-weight-medium">{{
-            this.$store.state.totalTime
-          }}</span>
+          <span class="font-weight-medium">
+            {{ this.$store.state.totalTime }}
+          </span>
           時間
         </v-list-item>
         <v-list-item>
@@ -105,11 +105,12 @@ export default {
     tweetRef() {
       return (
         this.ref +
-        "https://tweet-task.web.app&text=今週は、合計 " +
+        "&text=今週は、合計 " +
         this.$store.state.totalTime +
-        " 時間作業しました！%0a"
+        " 時間作業しました！%0a https://knowder.page.link/ogp"
       );
     },
+
     averageTotalTime() {
       let average = this.$store.state.totalTime;
       const point = 1;
