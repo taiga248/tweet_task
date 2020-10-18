@@ -62,7 +62,7 @@ export default {
         },
         {
           text: "作業時間を共有できます",
-          path: require("@/assets/home/addToHome-min.png")
+          path: require("@/assets/home/tweet-min.png")
         }
       ]
     };
