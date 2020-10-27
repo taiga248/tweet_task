@@ -33,6 +33,10 @@ const fetchUids = (state, uids) => {
 const fetchAllUsers = (state, users) => {
   state.allUsers.push(users);
 };
+const fetchNameAvatar = (state, userData) => {
+  state.userNames.push(userData.userName);
+  state.avatars.push(userData.photoURL);
+};
 
 export default {
   setLoginUser,
@@ -43,5 +47,6 @@ export default {
   setProfile,
   clearTotalTime,
   fetchUids,
-  fetchAllUsers
+  fetchAllUsers,
+  fetchNameAvatar
 };

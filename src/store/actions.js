@@ -149,13 +149,22 @@ const fetchUids = ({ commit }) => {
     .then(doc => commit("fetchUids", doc.data().id));
 };
 const fetchAllUsers = ({ commit }, uids) => {
+  const usersDB = dbRef("allUsers");
   for (let i = 0; i < uids.length; i++) {
     let uid = uids[i];
-    dbRef(`allUsers/${uid}/totalTime`)
+    usersDB
+      .doc(uid)
+      .collection(`totalTime`)
       .doc("time")
       .get()
       .then(doc => {
         commit("fetchAllUsers", doc.data());
+      });
+    usersDB
+      .doc(uid)
+      .get()
+      .then(doc => {
+        commit("fetchNameAvatar", doc.data());
       });
   }
 };
