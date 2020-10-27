@@ -25,6 +25,14 @@ const setProfile = (state, profile) => {
 const clearTotalTime = state => {
   state.totalTime = 0;
 };
+const fetchUids = (state, uids) => {
+  for (let i = 0; i < uids.length; i++) {
+    state.uidData.push(uids[i]);
+  }
+};
+const fetchAllUsers = (state, users) => {
+  state.allUsers.push(users);
+};
 
 export default {
   setLoginUser,
@@ -33,5 +41,7 @@ export default {
   addWork,
   addTime,
   setProfile,
-  clearTotalTime
+  clearTotalTime,
+  fetchUids,
+  fetchAllUsers
 };

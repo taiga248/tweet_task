@@ -16,9 +16,9 @@
 
       <v-content>
         <v-container fluid fill-height align-start>
-          <keep-alive>
-            <router-view />
-          </keep-alive>
+          <!-- <keep-alive> -->
+          <router-view />
+          <!-- </keep-alive> -->
         </v-container>
       </v-content>
     </section>
@@ -44,9 +44,11 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setLoginUser(user);
+        this.fetchUids();
         this.fetchWork();
         this.fetchProfile();
         this.fetchTime();
+        // this.fetchAllUsers(this.$store.state.uidData);
         if (this.$router.currentRoute.name === "Home") {
           this.$router.push({ name: "Account" }, () => {});
         }
@@ -96,7 +98,9 @@ export default {
       "deleteLoginUser",
       "fetchWork",
       "fetchProfile",
-      "fetchTime"
+      "fetchTime",
+      "fetchUids",
+      "fetchAllUsers"
     ])
   },
   beforeUpdate() {
