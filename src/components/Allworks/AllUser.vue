@@ -25,12 +25,11 @@
     <v-card class="my-1 text-center" v-for="(uid, i) in uids" :key="i">
       <v-responsive class="pt-2">
         <v-avatar size="100">
-          <v-img :src="photoURL" alt="avatar" />
+          <v-img :src="avatars[i]" alt="avatar" />
         </v-avatar>
       </v-responsive>
-      <v-card-title v-text="uid"></v-card-title>
       <v-card-title>
-        <div class="mx-auto">userName</div>
+        <p class="mx-auto" v-text="userNames[i]"></p>
       </v-card-title>
       <v-card-text>
         <v-list>
@@ -68,7 +67,9 @@ export default {
     return {
       tags: this.$store.state.tags,
       uids: this.$store.state.uidData,
-      allUsers: this.$store.state.allUsers
+      allUsers: this.$store.state.allUsers,
+      userNames: this.$store.state.userNames,
+      avatars: this.$store.state.avatars
     };
   },
   created() {

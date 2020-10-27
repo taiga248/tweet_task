@@ -16,9 +16,7 @@
 
       <v-content>
         <v-container fluid fill-height align-start>
-          <!-- <keep-alive> -->
           <router-view />
-          <!-- </keep-alive> -->
         </v-container>
       </v-content>
     </section>
@@ -48,7 +46,6 @@ export default {
         this.fetchWork();
         this.fetchProfile();
         this.fetchTime();
-        // this.fetchAllUsers(this.$store.state.uidData);
         if (this.$router.currentRoute.name === "Home") {
           this.$router.push({ name: "Account" }, () => {});
         }

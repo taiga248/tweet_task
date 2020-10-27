@@ -56,6 +56,8 @@ const profile = {
 };
 const uidData = [];
 const allUsers = [];
+const userNames = [];
+const avatars = [];
 
 export default {
   login_user,
@@ -67,5 +69,7 @@ export default {
   times,
   profile,
   allUsers,
-  uidData
+  uidData,
+  userNames,
+  avatars
 };
