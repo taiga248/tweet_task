@@ -54,7 +54,8 @@ const profile = {
   target: "",
   limit: ""
 };
-const AllUsers = [];
+const uidData = [];
+const allUsers = [];
 
 export default {
   login_user,
@@ -65,5 +66,6 @@ export default {
   totalTime,
   times,
   profile,
-  AllUsers
+  allUsers,
+  uidData
 };

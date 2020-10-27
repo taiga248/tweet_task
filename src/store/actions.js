@@ -2,6 +2,10 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
+function dbRef(name) {
+  return firebase.firestore().collection(name);
+}
+
 const login = () => {
   const google_auth_provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithRedirect(google_auth_provider);
@@ -9,8 +13,23 @@ const login = () => {
 const logout = () => {
   firebase.auth().signOut();
 };
-const setLoginUser = ({ commit }, user) => {
+const setLoginUser = ({ getters, commit }, user) => {
   commit("setLoginUser", user);
+  if (getters.uid) {
+    const usersDB = dbRef("allUsers");
+    const allUsersDB = dbRef("users");
+    const uidDB = dbRef("uidDB");
+    const userData = { userName: getters.userName, photoURL: getters.photoURL };
+
+    const ids = [getters.uid];
+    usersDB.doc(getters.uid).set(userData);
+    allUsersDB.doc(getters.uid).set(userData);
+
+    // 全ユーザー観覧用に一時保存
+    uidDB.doc("uids").update({
+      id: firebase.firestore.FieldValue.arrayUnion(...ids)
+    });
+  }
 };
 const deleteLoginUser = ({ commit }) => {
   commit("deleteLoginUser");
@@ -20,86 +39,65 @@ const toggleSideMenu = ({ commit }) => {
 };
 const setProfile = ({ getters, commit }, profile) => {
   if (getters.uid) {
-    firebase
-      .firestore()
-      .collection(`users/${getters.uid}/profile`)
+    const profDB = dbRef(`users/${getters.uid}/profile`);
+    profDB
       .doc("text")
-      .get()
+      .set(profile)
       .then(() => {
-        firebase
-          .firestore()
-          .collection(`users/${getters.uid}/profile`)
-          .doc("text")
-          .set(profile)
-          .then(() => {
-            commit("setProfile", profile);
-          });
+        commit("setProfile", profile);
       });
   }
 };
 const fetchProfile = ({ getters, commit }) => {
   if (getters.uid) {
-    firebase
-      .firestore()
-      .collection(`users/${getters.uid}/profile`)
-      .doc("text")
-      .onSnapshot(doc => {
-        try {
-          // 何もない時は初期データ埋め込み
-          if (doc.data() === undefined) {
-            const profile = {
-              target: "何か目標を決めましょう！",
-              limit: "いつまでにやりますか？"
-            };
-            commit("setProfile", profile);
-          } else {
-            commit("setProfile", doc.data());
-          }
-        } catch (error) {
-          console.log("Profile is empty.");
+    const profDB = dbRef(`users/${getters.uid}/profile`);
+    profDB.doc("text").onSnapshot(doc => {
+      try {
+        // 何もない時は初期データ埋め込み
+        if (doc.data() === undefined) {
+          const profile = {
+            target: "何か目標を決めましょう！",
+            limit: "いつまでにやりますか？"
+          };
+          commit("setProfile", profile);
+        } else {
+          commit("setProfile", doc.data());
         }
-      });
+      } catch (error) {
+        console.log("Profile is empty.");
+      }
+    });
   }
 };
 const addWork = ({ getters, commit }, work) => {
   if (getters.uid) {
-    firebase
-      .firestore()
-      .collection(`users/${getters.uid}/work`)
-      .add(work)
-      .then(doc => {
-        commit("addWork", { id: doc.id, work });
-      });
+    const workDB = dbRef(`users/${getters.uid}/work`);
+    workDB.add(work).then(doc => {
+      commit("addWork", { id: doc.id, work });
+    });
   }
 };
 const fetchWork = ({ getters, commit }) => {
   if (getters.uid) {
-    firebase
-      .firestore()
-      .collection(`users/${getters.uid}/work`)
-      .get()
-      .then(snapshot => {
-        snapshot.forEach(doc =>
-          commit("addWork", { id: doc.id, work: doc.data() })
-        );
-      });
+    const workDB = dbRef(`users/${getters.uid}/work`);
+    workDB.get().then(snapshot => {
+      snapshot.forEach(doc =>
+        commit("addWork", { id: doc.id, work: doc.data() })
+      );
+    });
   }
 };
 const addTime = ({ getters, commit }, times) => {
   if (getters.uid) {
-    firebase
-      .firestore()
-      .collection(`users/${getters.uid}/totalTime`)
+    const timeDB = dbRef(`users/${getters.uid}/totalTime`);
+    const allUserTimeDB = dbRef(`allUsers/${getters.uid}/totalTime`);
+    timeDB
       .doc("time")
       .get()
       .then(doc => {
         if (doc.data() === undefined) {
           // 初回アクセス時、コレクションがない時の挙動
-          firebase
-            .firestore()
-            .collection(`users/${getters.uid}/totalTime`)
-            .doc("time")
-            .set(times);
+          timeDB.doc("time").set(times);
         } else {
           const existingTotalTime = doc.data().sum;
           const existingWorkTime = doc.data().work_sum;
@@ -113,38 +111,51 @@ const addTime = ({ getters, commit }, times) => {
           };
           // 一時的に総和を0にしている 要リファクタ
           commit("clearTotalTime");
-          firebase
-            .firestore()
-            .collection(`users/${getters.uid}/totalTime`)
-            .doc("time")
-            .set(times);
+          timeDB.doc("time").set(times);
+          // 全員の記録観覧用
+          allUserTimeDB.doc("time").set(times);
         }
       });
   }
 };
 const fetchTime = ({ getters, commit }) => {
   if (getters.uid) {
-    firebase
-      .firestore()
-      .collection(`users/${getters.uid}/totalTime`)
-      .doc("time")
-      .onSnapshot(doc => {
-        try {
-          // 何もない時は初期データ埋め込み
-          if (doc.data() === undefined) {
-            const times = {
-              sum: 0,
-              work_sum: 0,
-              task_sum: 0,
-              study_sum: 0
-            };
-            commit("addTime", times);
-          } else {
-            commit("addTime", doc.data());
-          }
-        } catch (error) {
-          console.log("DB is empty.");
+    const timeDB = dbRef(`users/${getters.uid}/totalTime`);
+    timeDB.doc("time").onSnapshot(doc => {
+      try {
+        // 何もない時は初期データ埋め込み
+        if (doc.data() === undefined) {
+          const times = {
+            sum: 0,
+            work_sum: 0,
+            task_sum: 0,
+            study_sum: 0
+          };
+          commit("addTime", times);
+        } else {
+          commit("addTime", doc.data());
         }
+      } catch (error) {
+        console.log("DB is empty.");
+      }
+    });
+  }
+};
+const fetchUids = ({ commit }) => {
+  const uidDB = dbRef("uidDB");
+  uidDB
+    .doc("uids")
+    .get()
+    .then(doc => commit("fetchUids", doc.data().id));
+};
+const fetchAllUsers = ({ commit }, uids) => {
+  for (let i = 0; i < uids.length; i++) {
+    let uid = uids[i];
+    dbRef(`allUsers/${uid}/totalTime`)
+      .doc("time")
+      .get()
+      .then(doc => {
+        commit("fetchAllUsers", doc.data());
       });
   }
 };
@@ -160,5 +171,7 @@ export default {
   addWork,
   fetchWork,
   addTime,
-  fetchTime
+  fetchTime,
+  fetchUids,
+  fetchAllUsers
 };
