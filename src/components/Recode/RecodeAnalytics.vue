@@ -3,7 +3,11 @@
     <v-card class="py-5">
       <v-layout>
         <v-flex xs12 md10 class="mx-auto">
-          <Chart class="my-1 px-3" :chartData="chartData" :options="options" />
+          <RecodeChart
+            class="my-1 px-3"
+            :chartData="chartData"
+            :options="options"
+          />
         </v-flex>
       </v-layout>
 
@@ -46,11 +50,11 @@
 
 <script>
 import { mapGetters } from "vuex";
-import Chart from "@/components/Recode/Chart";
+import RecodeChart from "@/components/Recode/RecodeChart";
 
 export default {
   components: {
-    Chart
+    RecodeChart
   },
   created() {
     this.works = this.$store.state.works;

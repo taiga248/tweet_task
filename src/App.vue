@@ -81,9 +81,9 @@ export default {
           return this.activePath[1];
         case "/Recode":
           return this.activePath[2];
-        case "/Allworks":
+        case "/AllUsers":
           return this.activePath[3];
-        case "/Howto":
+        case "/How":
           return this.activePath[4];
         default:
           return this.activePath[0];

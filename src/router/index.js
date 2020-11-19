@@ -4,8 +4,8 @@ import Home from "../views/Home.vue";
 import Account from "../views/Account.vue";
 import Recode from "../views/Recode.vue";
 import NotFound from "../views/NotFound.vue";
-import Allworks from "../views/Allworks.vue";
-import Howto from "../views/Howto.vue";
+import AllUsers from "../views/AllUsers.vue";
+import How from "../views/How.vue";
 
 Vue.use(VueRouter);
 
@@ -26,14 +26,14 @@ const routes = [
     component: Recode
   },
   {
-    path: "/Allworks",
-    name: "Allworks",
-    component: Allworks
+    path: "/AllUsers",
+    name: "AllUsers",
+    component: AllUsers
   },
   {
-    path: "/Howto",
-    name: "Howto",
-    component: Howto
+    path: "/How",
+    name: "How",
+    component: How
   },
   {
     path: "/*",

@@ -2,17 +2,17 @@
   <v-container>
     <v-layout row wrap class="mx-auto">
       <v-flex xs12 md3>
-        <HowToMenu />
+        <HowMenu />
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
-import HowToMenu from "@/components/HowTo/HowToMenu";
+import HowMenu from "@/components/How/HowMenu";
 export default {
   components: {
-    HowToMenu
+    HowMenu
   }
 };
 </script>
