@@ -23,12 +23,12 @@
       </v-card-text>
     </v-card>-->
     <v-card class="my-1 text-center" v-for="(uid, i) in uids" :key="i">
-      <v-responsive class="pt-2">
-        <v-avatar size="100">
+      <v-responsive class="pt-4">
+        <v-avatar size="150">
           <v-img :src="avatars[i]" alt="avatar" />
         </v-avatar>
       </v-responsive>
-      <v-card-title>
+      <v-card-title class="my-0 py-0">
         <p class="mx-auto" v-text="userNames[i]"></p>
       </v-card-title>
       <v-card-text>

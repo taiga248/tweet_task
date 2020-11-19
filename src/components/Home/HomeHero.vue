@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import CTA from "@/components/Home/CallToAction/CTA";
+import CTA from "@/components/Home/HomeCTA";
 
 export default {
   components: {

@@ -1,3 +1,4 @@
+// Global
 const login_user = null;
 const pageItem = [
   {
@@ -17,16 +18,14 @@ const pageItem = [
   {
     title: "みんなの記録",
     icon: "mdi-content-save-all",
-    link: { name: "Allworks" }
+    link: { name: "AllUsers" }
   },
   {
     title: "このアプリについて",
     icon: "mdi-cog",
-    link: { name: "Howto" }
+    link: { name: "How" }
   }
 ];
-const drawer = false;
-const works = [];
 const tags = [
   {
     name: "仕事",
@@ -44,20 +43,30 @@ const tags = [
     bg_color: "rgba(255, 99, 132, 0.2)"
   }
 ];
-const totalTime = 0;
+const drawer = false;
+
+// Account
+const profile = {
+  target: "",
+  limit: ""
+};
 const times = {
   work_sum: 0,
   task_sum: 0,
   study_sum: 0
 };
-const profile = {
-  target: "",
-  limit: ""
-};
-const uidData = [];
+const totalTime = 0;
+const works = [];
+
+// AllUsers
 const allUsers = [];
 const userNames = [];
+const uidData = [];
 const avatars = [];
+
+// Home
+// How
+// Recode
 
 export default {
   login_user,

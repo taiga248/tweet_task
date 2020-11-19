@@ -36,12 +36,12 @@ export default {
   methods: {
     tag_color(tag) {
       switch (tag) {
-        case "仕事":
-          return "rgba(54, 162, 235, 1)";
-        case "課題":
-          return "rgba(48, 209, 88, 1)";
-        case "勉強":
-          return "rgba(255, 99, 132, 1)";
+        case this.tags[0].name: // 仕事 青
+          return this.tags[0].color;
+        case this.tags[1].name: // 課題 緑
+          return this.tags[1].color;
+        case this.tags[2].name: // 勉強 赤
+          return this.tags[2].color;
         default:
           return;
       }
