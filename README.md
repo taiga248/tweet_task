@@ -1,10 +1,7 @@
 # Tweet Task
 <img src="https://img.shields.io/badge/PWA-brightgreen"> <img src="https://img.shields.io/badge/Vue-green"> <img src="https://img.shields.io/badge/Vuetify-blue"> <img src="https://img.shields.io/badge/Firebase-darkblue">
 
-今のところMobileサイズのみの対応
-
-[here](https://tweet-task.web.app/)
-(名前　Knowderと迷ってる)
+Mobileサイズのみの対応
 
 - 作業記録を残し、頑張ったという事実をグラフで視覚的に体験
 - Twitterで自分の作業時間を共有
